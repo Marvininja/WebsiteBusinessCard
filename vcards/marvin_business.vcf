@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Marvin
+N:;;;;
+TEL;TYPE=WORK,VOICE:+49 15679 652 219
+EMAIL;TYPE=INTERNET:contact@marvininja.ch
+URL:https://www.marvininja.ch
+ADR:;;Zürich;;;Schweiz
+UID:marvin-business-contact
+NOTE:Geschäftlicher Kontakt – bei WhatsApp bitte Schweizer Nummer verwenden
+END:VCARD
