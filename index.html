@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marvin – Digitale Visitenkarte</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="img/favicon2.png">
+  <link rel="apple-touch-icon" href="img/favicon.png">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: #ffd700;
+      background: url('img/bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      text-align: center;
+      padding: 24px 0 24px 0;
+    }
+
+    .card {
+      background-color: rgba(0,0,0,0.5);
+      border-radius: 22px;
+      padding: 22px 18px 28px 18px;
+      width: 95%;
+      max-width: 430px;
+      min-width: 240px;
+      margin: 0 auto 24px auto;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 6px 40px 0 rgba(0,0,0,0.18);
+      position: relative;
+    }
+
+    .profile-pic {
+      width: 104px;
+      height: 104px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 16px 0 rgba(0,0,0,0.13);
+      border: 2.5px solid #ffd70030;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      color: #ffd700;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    p {
+      margin: 0.6rem 0 1.3rem;
+      font-size: 1.04rem;
+      color: #eee;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      max-width: 340px;
+      margin: 10px auto;
+      background: transparent;
+      border: 2px solid #ffd700;
+      border-radius: 8px;
+      padding: 11px 0;
+      color: #ffd700;
+      font-weight: 600;
+      font-size: 1.07em;
+      letter-spacing: 0.01em;
+      transition: background 0.25s, color 0.23s, border-color 0.22s;
+      text-decoration: none;
+      box-sizing: border-box;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .btn:hover,
+    .btn.active-btn {
+      background-color: #ffd700;
+      color: #212121;
+      border-color: #ffd700;
+    }
+
+    .subnav {
+      margin-bottom: 6px;
+      margin-top: 0px;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn.sub-btn {
+      display: block;
+      margin-left: clamp(8px, 3vw, 18px);
+      max-width: 285px;
+      border: 1.2px solid #ffd70067;
+      background: rgba(0,0,0,0.08);
+      color: #ffd700cd;
+      font-size: 1.07em;
+      padding: 6px 8px 6px 32px;
+      display: flex;
+      text-align: center;
+      position: relative;
+      border-radius: 8px;
+      box-shadow: none;
+      transition: background 0.17s, color 0.17s, border-color 0.15s;
+    }
+
+    .btn.sub-btn.active-btn,
+    .btn.sub-btn:hover {
+      background: rgba(255, 215, 0, 0.18);
+      color: #ffd700;
+      border-color: #ffd700;
+    }
+
+    .btn.sub-btn::before {
+      content: "↳";
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.06em;
+      color: #ffd70089;
+      opacity: 0.88;
+    }
+
+    .tab-content {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.36s, max-height 0.46s cubic-bezier(.5,1.5,.7,1);
+      pointer-events: none;
+      will-change: opacity, max-height;
+    }
+    .tab-content.open {
+      opacity: 1;
+      max-height: 2000px;
+      pointer-events: auto;
+    }
+
+    .socials {
+      margin-top: 18px;
+    }
+
+    .socials a {
+      margin: 0 9px;
+      color: #ffd700;
+      font-size: 1.5rem;
+      text-decoration: none;
+    }
+    .socials a:hover {
+      color: white;
+    }
+
+    .about-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease-out, padding 0.28s ease, opacity 0.27s ease;
+      padding-top: 0;
+      padding-bottom: 0;
+      opacity: 0;
+    }
+    .about-content.open {
+      max-height: 1000px;
+      padding-top: 14px;
+      padding-bottom: 14px;
+      opacity: 1;
+    }
+
+    .section-title {
+      font-size: 1.22em;
+      color: #ffd700;
+      font-weight: 700;
+      margin: 12px 0 8px 0;
+      letter-spacing: 0.01em;
+    }
+
+    .highlight-list {
+      padding-left: 0;
+      list-style: none;
+      margin: 10px 0 10px 0;
+    }
+
+    .highlight-list li {
+      text-align: left;
+      margin: 11px 0;
+      line-height: 1.55;
+      color: #ffd700;
+      font-size: 0.99em;
+      letter-spacing: 0.01em;
+    }
+
+    .mobile-only {
+      display: none;
+    }
+
+    /* Toast Notification */
+    .toast {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ffd700;
+      color: black;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .toast.show {
+      display: block;
+      opacity: 1;
+    }
+
+    /* --- Responsive Styles für Mobile --- */
+    @media (max-width: 600px) {
+      body {
+        padding: 10px 0 10px 0;
+      }
+
+      .card {
+        width: 100%;
+        padding: 10px 2vw 18px 2vw;
+        border-radius: 14px;
+        max-width: 100%;
+        min-width: 0;
+        margin: 0 auto 14px auto;
+      }
+
+      h1 {
+        font-size: 1.18rem;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: none;
+        padding: 10px 0;
+        font-size: 0.98rem;
+      }
+
+      .subnav {
+        max-width: 100%;
+        gap: 0px;
+      }
+
+      .btn.sub-btn {
+        margin-left: 0;
+        padding-left: clamp(24px, 8vw, 38px);
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        white-space: normal;
+        word-break: break-word;
+        font-size: 0.98em;
+        min-height: 34px;
+      }
+
+      .profile-pic {
+        width: 74px;
+        height: 74px;
+        margin-bottom: 7px;
+      }
+
+      .about-content {
+        font-size: 0.95rem;
+      }
+
+      .section-title {
+        font-size: 1.07em;
+      }
+
+      .highlight-list li {
+        font-size: 0.96em;
+      }
+
+      .socials a {
+        font-size: 1.18rem;
+      }
+
+      .mobile-only {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="img/pb2.jpg" alt="Profilbild" class="profile-pic">
+    <h1>Marvin</h1>
+    <p>Nerd, Visionary & Ninja</p>
+
+    <!-- Hauptnavigation -->
+    <a href="javascript:void(0);" onclick="showSection('lebenSection', event)" class="btn active-btn" id="lebenBtn">Leben</a>
+    <a href="javascript:void(0);" onclick="showSection('arbeitSection', event)" class="btn" id="arbeitBtn">Arbeit</a>
+    <a href="javascript:void(0);" onclick="showSection('kontaktSection', event)" class="btn" id="kontaktBtn">Kontakt</a>
+
+    <!-- Leben mit Tab-System -->
+    <div id="lebenSection" class="about-content open">
+      <div class="subnav" data-tab-group="leben">
+        <a href="javascript:void(0);" onclick="showTab('leben', 'interessenSection', this)" class="btn sub-btn active-btn">Interessen</a>
+        <a href="javascript:void(0);" onclick="showTab('leben', 'auswandernSection', this)" class="btn sub-btn">Mein Schritt in die Schweiz</a>
+      </div>
+      <div id="interessenSection" class="tab-content tab-content-leben open">
+        <h2 class="section-title">Leben</h2>
+        <ul class="highlight-list">
+          <li>📚 <strong>Lernen & Lesen:</strong> Stetige Weiterentwicklung durch Bücher, Artikel & Studien</li>
+          <li>🏃‍♂️ <strong>Sport:</strong> HIIT-Workout, Laufen, Sprinttraining – Körper und Geist in Bewegung</li>
+          <li>🏍️ <strong>Töff:</strong> Leidenschaft für Motoren, Motorräder & Technik</li>
+          <li>🧠 <strong>Psychologie:</strong> Menschliches Verhalten verstehen, analysieren und reflektieren</li>
+          <li>🤔 <strong>Philosophie:</strong> Sinnsuche, Selbstreflexion und innere Ruhe – inspiriert von Denkern wie <strong>Nietzsche, Descartes, Sartre, Jung</strong> und der stoischen Klarheit <strong>Marc Aurels</strong></li>
+          <li>☦️ <strong>Religion:</strong> Christliche Weltanschauung, Glaube als Lebensanker und Orientierung</li>
+        </ul>
+      </div>
+      <div id="auswandernSection" class="tab-content tab-content-leben">
+        <h2 class="section-title">Mein Schritt in die Schweiz 🇨🇭</h2>
+        <p>
+          Anfang 2024 habe ich Deutschland verlassen und bin in die Schweiz ausgewandert.
+          Es war lange ein Gedanke, der zu einem Traum wurde und nicht nur ein beruflicher Firmenwechsel,
+          sondern auch ein bewusster Absprung von einem System, das sich für mich zunehmend wie ein
+          sinkendes Schiff anfühlte.
+        </p>
+        <p>
+          Die gesellschaftliche Entwicklung in Deutschland – geprägt von wachsender Ineffizienz, Bürokratie
+          und Ellenbogenmentalität – stand im starken Kontrast zu dem, was ich in der Schweiz vorfand:
+          ein respektvollerer Umgang, mehr Miteinander und ein funktionierendes Gemeinwesen.
+        </p>
+        <p>
+          Diese gesellschaftliche Qualität ist nicht selbstverständlich. Sie ist ein hohes Gut,
+          das es zu bewahren gilt – denn sie kann schnell verloren gehen, wenn man nicht achtsam bleibt.
+          Ich bin dankbar, hier leben und wirken zu dürfen, und trage gerne meinen Teil dazu bei,
+          dass dieses Miteinander erhalten bleibt.
+        </p>
+      </div>
+    </div>
+
+    <!-- Arbeit mit Tab-System -->
+    <div id="arbeitSection" class="about-content">
+      <div class="subnav" data-tab-group="arbeit">
+        <a href="javascript:void(0);" onclick="showTab('arbeit', 'ueberMichSection', this)" class="btn sub-btn active-btn">Über mich</a>
+        <a href="javascript:void(0);" onclick="showTab('arbeit', 'projekt1Section', this)" class="btn sub-btn">Abschlussprojekt</a>
+        <a href="javascript:void(0);" onclick="showTab('arbeit', 'projekt2Section', this)" class="btn sub-btn">Projekt 2</a>
+      </div>
+      <div id="ueberMichSection" class="tab-content tab-content-arbeit open">
+        <h2 class="section-title">Arbeit</h2>
+        <h3>Über mich</h3>
+        <p>
+          Seit <strong>2017</strong> bin ich in der IT-MSP-Branche als IT-Dienstleister tätig.<br>
+          <strong>2019</strong> übernahm ich die Rolle des Applikationsspezialisten mit Schwerpunkt im Bereich
+          <em>Remote Monitoring & Management (RMM)</em> und gewann erste Erfahrungen als Führungsperson.
+        </p>
+        <ul class="highlight-list">
+          <li>⚙️ Betreuung, Weiterentwicklung & Optimierung komplexer Anwendungssysteme</li>
+          <li>📡 Überwachung, Aktualisierung & Verwaltung von Kundensystemen</li>
+          <li>📊 Berichterstattung, Qualitätssicherung & Kundenberatung</li>
+          <li>🚀 Innovationsentwicklung zur stetigen Service-Verbesserung</li>
+        </ul>
+        <p>
+          Seit <strong>2023</strong> liegt mein Fokus verstärkt auf <strong>Prozessautomatisierung</strong>.<br>
+          und seit <strong>2024</strong> beschäftige ich mich <strong> mit Künstlicher Intelligenz</strong>,
+          um maßgeschneiderte Lösungen in IT-Prozesse zu integrieren und neue Potenziale zu erschließen.
+        </p>
+      </div>
+      <div id="projekt1Section" class="tab-content tab-content-arbeit">
+        <h2 class="section-title">Automatisiertes Server-Patchmanagement</h2>
+        <p>
+          In meiner Projektarbeit habe ich ein automatisiertes Patchmanagement-System auf Basis von
+          <span style="white-space: nowrap;"><strong>N-Able&nbsp;N-sight&nbsp;RMM</strong></span> entwickelt –
+          einer marktführenden Lösung im Bereich <em>Remote Monitoring & Management</em>.
+        </p>
+        <p>
+          Zuvor wurden sicherheitskritische Updates manuell durchgeführt, um höchste Qualitäts- und
+          Compliance-Standards zu erfüllen. Durch gezielte Erweiterung und Umgehung bestehender
+          Limitationen konnte ich eine Lösung schaffen, die <strong>vollautomatisiert</strong> die gleichen
+          hohen Standards sicherstellt – bei gleichzeitiger <strong>Reduktion manueller Aufwände auf nahezu null</strong>.
+        </p>
+        <p>
+          Gleichzeitig wurde erreicht, flächendeckend bei allen Kunden ein <strong>sicheres Konzept</strong> mit <strong>drei
+          gestaffelten Testgruppen</strong> und einer <strong> Produktivgruppe</strong> umzusetzen. Dadurch konnten
+          wir jeden Monat die <strong>höchste Verfügbarkeit</strong> und <strong>vollständige Funktionalität der kritischen Systeme</strong> sicherstellen und garantieren.
+        </p>
+        <p><strong>Das Ergebnis:</strong></p>
+        <ul class="highlight-list">
+          <li>✅ Mehr Effizienz</li>
+          <li>✅ Weniger Fehlerpotenzial</li>
+          <li>✅ Mehr Sicherheit</li>
+          <li>✅ Weniger Ausfälle</li>
+          <li>✅ Zukunftsfähige, skalierbare IT-Services</li>
+        </ul>
+      </div>
+      <div id="projekt2Section" class="tab-content tab-content-arbeit">
+        <h2 class="section-title">Projekt 2</h2>
+        <p><em>In Kürze verfügbar …</em></p>
+      </div>
+    </div>
+
+    <!-- Kontakt -->
+    <div id="kontaktSection" class="about-content">
+      <h2 class="section-title">Kontakt</h2>
+      <p>
+        📨 <strong>E-Mail:</strong><br>
+        <a href="mailto:contact@marvininja.ch" style="color: #ffd700;">contact@marvininja.ch</a>
+      </p>
+      <p>
+        📞 <strong>Telefon:</strong><br>
+        <a href="tel:+4915679652219" style="color: #ffd700;">Geschäftlich: +49 15679 652 219</a>
+      </p>
+      <a href="vcards/marvin_business.vcf" class="btn mobile-only" download>
+        📇 Kontakt hinzufügen
+      </a>
+      <p>
+        📱 <strong>Privat:</strong>
+      </p>
+      <p style="color: #ffd700;">
+        Diese Nummer ist nur für persönliche Kontakte (z. B. WhatsApp) vorgesehen und steht nicht öffentlich zur Verfügung.
+      </p>
+    </div>
+
+    <!-- Toast für mobile vCard -->
+    <div id="toast" class="toast">📇 vCard wird heruntergeladen …</div>
+
+    <!-- Socials -->
+    <div class="socials">
+      <!-- <a href="https://github.com/Marvininja" target="_blank">🐙</a> -->
+      <!-- <a href="https://linkedin.com/in/deinprofil" target="_blank">🔗</a> -->
+      <!-- <a href="mailto:contact@marvininja.ch">📨</a> -->
+    </div>
+  </div>
+  <!-- JavaScript -->
+  <script>
+    function showSection(id, event) {
+      const mainSections = ['arbeitSection', 'lebenSection', 'kontaktSection'];
+      // Schließe alle Hauptbereiche
+      mainSections.forEach(sectionId => {
+        const section = document.getElementById(sectionId);
+        if (section) section.classList.remove('open');
+      });
+      // Zeige den ausgewählten Bereich
+      const target = document.getElementById(id);
+      if (target) {
+        target.classList.add('open');
+        setTimeout(() => {
+          // Scroll sauber zum Bereich
+          const yOffset = -16;
+          const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }, 240);
+      }
+      // Style-Aktualisierung Hauptnavigation
+      document.querySelectorAll('.btn').forEach(btn => btn.classList.remove('active-btn'));
+      if (event && event.target.classList.contains('btn')) {
+        event.target.classList.add('active-btn');
+      }
+    }
+    // Universelles Tab-System für Unterbereiche (Leben, Arbeit etc.)
+    function showTab(group, tabId, btn) {
+      // Alle Tabs dieser Gruppe schließen
+      document.querySelectorAll('.tab-content-' + group).forEach(el => el.classList.remove('open'));
+      // Gewählten Tab öffnen
+      document.getElementById(tabId).classList.add('open');
+      // Alle Buttons dieser Gruppe deaktivieren
+      document.querySelectorAll('.subnav[data-tab-group="' + group + '"] .sub-btn').forEach(b => b.classList.remove('active-btn'));
+      // Geklickten Button aktivieren
+      if (btn) btn.classList.add('active-btn');
+    }
+    // Toast anzeigen, wenn mobile Kontakt-Button geklickt wird
+    document.addEventListener("DOMContentLoaded", function () {
+      const contactBtn = document.querySelector('.mobile-only');
+      const toast = document.getElementById('toast');
+      if (contactBtn && toast) {
+        contactBtn.addEventListener('click', function () {
+          toast.classList.add('show');
+          setTimeout(() => {
+            toast.classList.remove('show');
+          }, 2500);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
