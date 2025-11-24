@@ -377,6 +377,19 @@
             color: #28e1da;
         }
 
+        .private-number {
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+            color: var(--text);
+        }
+        
+        .blurred-number {
+            filter: blur(5px);
+            user-select: none;
+            cursor: not-allowed;
+            transition: filter 0.3s ease;
+        }
+
         .contact-note {
             font-size: 0.95rem;
             line-height: 1.6;
@@ -676,6 +689,7 @@
 
                 <div class="contact-item">
                     <h3><i class="fa-solid fa-lock"></i> Privat</h3>
+                    <p class="private-number">+41 <span class="blurred-number">XX XXX XX XX</span></p>
                     <p class="contact-note">Diese Nummer ist nur für persönliche Kontakte (z. B. WhatsApp) vorgesehen und steht nicht öffentlich zur Verfügung.</p>
                 </div>
             </div>
