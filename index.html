@@ -3,136 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marvin – Digitale Visitenkarte</title>
+    <title>Marvin Graupner | RMM & PSA Specialist</title>
     <link rel="icon" type="image/png" href="img/favicon2.png">
     <link rel="apple-touch-icon" href="img/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-color: #1a1a2e;
-            --accent-color: #0f3460;
-            --highlight-color: #16213e;
-            --text-color: #e8e8e8;
-            --text-muted: #a8a8a8;
-            --bg-gradient-start: #0f0f1e;
-            --bg-gradient-end: #1a1a2e;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --hover-glow: rgba(15, 52, 96, 0.4);
-        }
-
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
-            color: var(--text-color);
-            line-height: 1.7;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f35 50%, #0f1419 100%);
+            color: #e8e8e8;
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Container */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(40,225,218,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: bgMove 20s linear infinite;
+        }
+
+        @keyframes bgMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .orb1 {
+            top: 10%;
+            left: 20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #28e1da 0%, transparent 70%);
+        }
+
+        .orb2 {
+            bottom: 20%;
+            right: 10%;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, #0f3460 0%, transparent 70%);
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
         }
 
-        /* Header/Hero Section */
         header {
             text-align: center;
-            padding: 4rem 1rem 2rem;
-            position: relative;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
-            opacity: 0.15;
-            border-radius: 50%;
-            z-index: -1;
+            padding: 3rem 1rem 2rem;
         }
 
         .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff 0%, var(--text-muted) 100%);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #fff 0%, #28e1da 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
         }
 
         .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            color: var(--text-muted);
-            margin-bottom: 2.5rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: #a8a8a8;
             font-weight: 300;
             letter-spacing: 0.05em;
-	    text-align: center;
+            margin-bottom: 1rem;
         }
 
-        /* Navigation Tabs */
+        .typed {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: #28e1da;
+            font-weight: 700;
+            min-height: 2rem;
+        }
+
         nav {
             display: flex;
             justify-content: center;
             gap: 1rem;
-            margin: 2rem 0 1rem;
+            margin: 2.5rem 0 1.5rem;
             flex-wrap: wrap;
         }
 
         nav a, .btn {
             padding: 0.9rem 2.2rem;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
+            background: rgba(30,38,54,0.6);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 50px;
-            color: var(--text-color);
+            color: #e8e8e8;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             cursor: pointer;
-            display: inline-block;
             font-size: 1rem;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
         }
 
         nav a:hover, .btn:hover {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
-            box-shadow: 0 0 20px var(--hover-glow);
+            background: rgba(40,225,218,0.2);
+            border-color: #28e1da;
+            box-shadow: 0 0 20px rgba(40,225,218,0.3);
             transform: translateY(-2px);
         }
 
-        nav a:active, .btn:active {
-            transform: translateY(0);
-        }
-
         .active-btn {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
+            background: linear-gradient(135deg, rgba(40,225,218,0.25), rgba(15,52,96,0.3));
+            border-color: #28e1da;
         }
 
-        /* Sub Navigation */
         .subnav {
             display: flex;
             justify-content: center;
             gap: 0.8rem;
-            margin: 0.5rem 0 2rem;
+            margin: 1rem 0 2rem;
             flex-wrap: wrap;
         }
 
@@ -141,97 +156,183 @@
             font-size: 0.95rem;
         }
 
-        /* Content Sections */
-        section, .about-content {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
+        .glass {
+            background: rgba(30,38,54,0.65);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 20px;
-            padding: 1.5rem 1.5rem;
+            padding: 2.5rem 2rem;
             margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out;
         }
 
-        section:hover, .about-content:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .section-title, h2 {
+        .glass:hover {
+            border-color: rgba(255,255,255,0.15);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.4);
+        }
+
+        h2 {
             font-size: clamp(1.8rem, 3vw, 2.5rem);
-            margin-bottom: 1.5rem;
-            color: #fff;
-            font-weight: 600;
+            margin-bottom: 1.8rem;
+            color: #28e1da;
+            font-weight: 700;
             position: relative;
             display: inline-block;
         }
 
-        .section-title::after, h2::after {
+        h2::after {
             content: '';
             position: absolute;
             bottom: -8px;
             left: 0;
             width: 60px;
             height: 3px;
-            background: linear-gradient(90deg, var(--accent-color), transparent);
+            background: linear-gradient(90deg, #28e1da, transparent);
             border-radius: 2px;
         }
 
         h3 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: #fff;
             margin: 2rem 0 1rem;
             font-weight: 600;
         }
 
         p {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.3rem;
             font-size: 1.05rem;
-            color: var(--text-muted);
-            text-align: left;
+            color: #b8b8b8;
+            line-height: 1.7;
         }
 
-        /* Lists */
-        .highlight-list {
-            list-style: none;
-            padding: 0;
-            text-align: left;
-            margin: 1.5rem 0;
-        }
-
-        .highlight-list li {
-            padding: 1rem 1.5rem;
-            margin-bottom: 1rem;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            color: var(--text-muted);
-            transition: all 0.3s ease;
-        }
-
-        .highlight-list li:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--accent-color);
-            transform: translateX(5px);
-        }
-
-        .highlight-list strong {
-            color: #fff;
-            font-weight: 600;
-        }
-
-        /* Highlight Text */
         strong {
             color: #fff;
             font-weight: 600;
         }
 
         em {
-            color: var(--text-muted);
+            color: #28e1da;
             font-style: italic;
         }
 
-        /* Contact Section */
+        .highlight-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-list li {
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1rem;
+            background: rgba(45,55,75,0.4);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            color: #b8b8b8;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+
+        .highlight-list li:hover {
+            background: rgba(45,55,75,0.6);
+            border-color: rgba(40,225,218,0.3);
+            transform: translateX(8px);
+        }
+
+        .bento {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .bento-card {
+            background: rgba(45,55,75,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 2rem 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .bento-card:hover {
+            background: rgba(45,55,75,0.7);
+            border-color: rgba(40,225,218,0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(40,225,218,0.15);
+        }
+
+        .bento-card h4 {
+            font-size: 1.3rem;
+            color: #28e1da;
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline {
+            border-left: 3px solid #28e1da;
+            margin-left: 12px;
+            padding-left: 28px;
+            margin-top: 2rem;
+        }
+
+        .timeline-entry {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .timeline-entry::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 2px;
+            width: 16px;
+            height: 16px;
+            background: #28e1da;
+            border-radius: 50%;
+            border: 3px solid #0a0e1a;
+            box-shadow: 0 0 10px rgba(40,225,218,0.5);
+        }
+
+        .timeline-date {
+            font-size: 0.95rem;
+            color: #28e1da;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .timeline-role {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-place {
+            font-size: 1rem;
+            font-style: italic;
+            color: #a8a8a8;
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-desc {
+            font-size: 1.05rem;
+            color: #b8b8b8;
+            line-height: 1.6;
+        }
+
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -240,51 +341,41 @@
         }
 
         .contact-item {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--card-border);
+            background: rgba(45,55,75,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 15px;
-            padding: 1.8rem;
+            padding: 2rem 1.8rem;
             transition: all 0.3s ease;
-            text-align: left;
         }
 
         .contact-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--accent-color);
+            background: rgba(45,55,75,0.7);
+            border-color: rgba(40,225,218,0.4);
             transform: translateY(-5px);
         }
 
         .contact-item h3 {
-            color: #fff;
-            margin: 0 0 0.8rem 0;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .contact-item h3::before {
-            content: '●';
-            color: var(--accent-color);
-            font-size: 0.8rem;
+            color: #28e1da;
+            margin: 0 0 1rem 0;
+            font-size: 1.2rem;
         }
 
         .contact-item a {
-            color: var(--text-muted);
+            color: #b8b8b8;
             text-decoration: none;
             transition: color 0.3s;
         }
 
         .contact-item a:hover {
-            color: #fff;
+            color: #28e1da;
         }
 
         .contact-note {
             font-size: 0.95rem;
             line-height: 1.6;
+            color: #a8a8a8;
         }
 
-        /* Tab Content Visibility */
         .about-content, .tab-content {
             display: none;
         }
@@ -293,34 +384,27 @@
             display: block;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 3rem 1rem 2rem;
-            color: var(--text-muted);
+            color: #a8a8a8;
             font-size: 0.95rem;
-            border-top: 1px solid var(--card-border);
+            border-top: 1px solid rgba(255,255,255,0.1);
             margin-top: 4rem;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
-            header {
-                padding: 2rem 1rem 1rem;
+            .container {
+                padding: 1.5rem 1rem;
             }
 
-            section, .about-content {
+            .glass {
                 padding: 2rem 1.5rem;
-            }
-
-            nav {
-                gap: 0.7rem;
             }
 
             nav a, .btn {
                 padding: 0.8rem 1.5rem;
                 font-size: 0.95rem;
-                min-width: auto;
             }
 
             .sub-btn {
@@ -328,98 +412,52 @@
                 font-size: 0.9rem;
             }
 
-            .contact-grid {
+            .bento {
                 grid-template-columns: 1fr;
             }
 
-            .highlight-list li {
-                padding: 0.8rem 1rem;
-                font-size: 0.95rem;
+            .timeline {
+                padding-left: 20px;
             }
         }
 
-        @media (max-width: 480px) {
-            .container {
-                padding: 1rem 0.8rem;
-            }
-
-            section, .about-content {
-                padding: 1.8rem 1.3rem;
-            }
-
-            nav {
-                gap: 0.6rem;
-            }
-
-            nav a, .btn {
-                padding: 0.7rem 1.2rem;
-                font-size: 0.9rem;
-            }
-
-            .sub-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.85rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .section-title, h2 {
-                font-size: 1.6rem;
-            }
-
-            h3 {
-                font-size: 1.2rem;
-            }
-
-            p, .highlight-list li {
-                font-size: 0.98rem;
-            }
-        }
-
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Selection Styling */
         ::selection {
-            background: var(--accent-color);
+            background: rgba(40,225,218,0.3);
             color: #fff;
         }
 
-        /* Accessibility - Better tap targets for mobile */
-        @media (hover: none) and (pointer: coarse) {
-            nav a, .btn {
-                min-height: 44px;
-                min-width: 44px;
-            }
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
 <body>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+
     <div class="container">
         <header>
             <h1 class="hero-title">Nerd, Visionary & Ninja</h1>
-            <p class="hero-subtitle">Marvin – IT-Spezialist aus Deutschland</p>
+            <p class="hero-subtitle">Marvin Graupner – IT-Spezialist aus Deutschland 🇩🇪 in der Schweiz 🇨🇭</p>
+            <div class="typed" id="typed"></div>
 
             <nav>
                 <a href="javascript:void(0);" onclick="showSection('lebenSection', event)" class="active-btn" id="lebenBtn">Leben</a>
                 <a href="javascript:void(0);" onclick="showSection('arbeitSection', event)" id="arbeitBtn">Arbeit</a>
+                <a href="javascript:void(0);" onclick="showSection('werdegang', event)" id="werdegangBtn">Werdegang</a>
                 <a href="javascript:void(0);" onclick="showSection('kontaktSection', event)" id="kontaktBtn">Kontakt</a>
             </nav>
         </header>
 
-        <!-- Leben mit Tab-System -->
+        <!-- LEBEN -->
         <div id="lebenSection" class="about-content open">
             <div class="subnav" data-tab-group="leben">
                 <a href="javascript:void(0);" onclick="showTab('leben', 'interessenSection', this)" class="btn sub-btn active-btn">Interessen</a>
                 <a href="javascript:void(0);" onclick="showTab('leben', 'auswandernSection', this)" class="btn sub-btn">Mein Schritt in die Schweiz</a>
             </div>
 
-            <div id="interessenSection" class="tab-content tab-content-leben open">
-                <h2 class="section-title">Leben</h2>
+            <div id="interessenSection" class="tab-content tab-content-leben open glass">
+                <h2>Leben</h2>
                 <ul class="highlight-list">
                     <li>📚 <strong>Lernen & Lesen:</strong> Stetige Weiterentwicklung durch Bücher, Artikel & Studien</li>
                     <li>🏃‍♂️ <strong>Sport:</strong> HIIT-Workout, Laufen, Sprinttraining – Körper und Geist in Bewegung</li>
@@ -430,8 +468,8 @@
                 </ul>
             </div>
 
-            <div id="auswandernSection" class="tab-content tab-content-leben">
-                <h2 class="section-title">Mein Schritt in die Schweiz 🇨🇭</h2>
+            <div id="auswandernSection" class="tab-content tab-content-leben glass">
+                <h2>Mein Schritt in die Schweiz 🇨🇭</h2>
                 <p>
                     Anfang 2024 habe ich Deutschland verlassen und bin in die Schweiz ausgewandert.
                     <strong>Es war lange ein Gedanke, der zu einem Traum wurde</strong> und nicht nur ein beruflicher Firmenwechsel,
@@ -452,17 +490,17 @@
             </div>
         </div>
 
-        <!-- Arbeit Section -->
+        <!-- ARBEIT -->
         <div id="arbeitSection" class="about-content">
             <div class="subnav" data-tab-group="arbeit">
                 <a href="javascript:void(0);" onclick="showTab('arbeit', 'ueberMichSection', this)" class="btn sub-btn active-btn">Über mich</a>
                 <a href="javascript:void(0);" onclick="showTab('arbeit', 'projekt1Section', this)" class="btn sub-btn">Abschlussprojekt</a>
                 <a href="javascript:void(0);" onclick="showTab('arbeit', 'ninjaoneSection', this)" class="btn sub-btn">NinjaOne Transformation</a>
-				<a href="javascript:void(0);" onclick="showTab('arbeit', 'dashboardSection', this)" class="btn sub-btn">Realtime Dashboard</a>
+                <a href="javascript:void(0);" onclick="showTab('arbeit', 'dashboardSection', this)" class="btn sub-btn">Realtime Dashboard</a>
             </div>
 
-            <div id="ueberMichSection" class="tab-content tab-content-arbeit open">
-                <h2 class="section-title">Arbeit</h2>
+            <div id="ueberMichSection" class="tab-content tab-content-arbeit open glass">
+                <h2>Arbeit</h2>
                 <h3>Über mich</h3>
                 <p>
                     Seit <strong>2017</strong> bin ich in der IT-MSP-Branche als IT-Dienstleister tätig.<br>
@@ -480,8 +518,8 @@
                 </ul>
             </div>
 
-            <div id="projekt1Section" class="tab-content tab-content-arbeit">
-                <h2 class="section-title">Automatisiertes Server-Patchmanagement</h2>
+            <div id="projekt1Section" class="tab-content tab-content-arbeit glass">
+                <h2>Automatisiertes Server-Patchmanagement</h2>
                 <p>
                     In meiner Projektarbeit habe ich ein automatisiertes Patchmanagement-System auf Basis von
                     <strong>N-Able N-sight RMM</strong> entwickelt –
@@ -508,10 +546,9 @@
                 </ul>
             </div>
 
-            <div id="ninjaoneSection" class="tab-content tab-content-arbeit">
-                <h2 class="section-title">NinjaOne Transformation</h2>
-
-				<h3>Die Ausgangssituation</h3>
+            <div id="ninjaoneSection" class="tab-content tab-content-arbeit glass">
+                <h2>NinjaOne Transformation</h2>
+                <h3>Die Ausgangssituation</h3>
                 <p>
                     Bevor ich die Rolle des <strong>RMM-Spezialisten</strong> übernahm, herrschte Chaos:
                     Jeder Mitarbeiter skriptete individuell für seine eigenen Kunden, ohne übergreifende Verantwortung.
@@ -519,28 +556,28 @@
                 </p>
                 <h3>Meine Lösung: Struktur und Verantwortung</h3>
                 <p>
-                    Ich übernahm die  Verantwortung für <strong>NinjaOne</strong> und schuf von Grund auf ein durchdachtes,
+                    Ich übernahm die Verantwortung für <strong>NinjaOne</strong> und schuf von Grund auf ein durchdachtes,
                     kundenübergreifendes System. Fortan war jede Änderung, jedes Skript und jede Konfiguration
                     für <strong>alle Kunden</strong> profitabel – nicht nur für einzelne.
                 </p>
                 <p>
-                    Durch die Entwicklung zahlreicher <strong> Skripte</strong>,<strong> Überprüfungen</strong>, <strong>Custom Fields</strong> und 
+                    Durch die Entwicklung zahlreicher <strong>Skripte</strong>, <strong>Überprüfungen</strong>, <strong>Custom Fields</strong> und 
                     <strong>Monitoring-Graphs</strong> entstand eine konsistente, skalierbare Umgebung, die den gesamten
                     IT-Support-Prozess revolutionierte.
                 </p>
-				    <p><strong>Das Ergebnis:</strong></p>
-					    <ul class="highlight-list">
-					        <li>✅ Von individuellem Chaos zu zentraler, kundenübergreifender Verantwortung</li>
-					        <li>✅ Strukturierte NinjaOne-Umgebung mit konsistenten Konfigurationen</li>
-					        <li>✅ Alle Kunden profitieren von jeder Verbesserung gleichermaßen</li>
-					        <li>✅ Skalierbare Automatisierung</li>
-						</ul>
-			</div>
+                <p><strong>Das Ergebnis:</strong></p>
+                <ul class="highlight-list">
+                    <li>✅ Von individuellem Chaos zu zentraler, kundenübergreifender Verantwortung</li>
+                    <li>✅ Strukturierte NinjaOne-Umgebung mit konsistenten Konfigurationen</li>
+                    <li>✅ Alle Kunden profitieren von jeder Verbesserung gleichermaßen</li>
+                    <li>✅ Skalierbare Automatisierung</li>
+                </ul>
+            </div>
 
-				<div id="dashboardSection" class="tab-content tab-content-arbeit">
- 				   <h2 class="section-title">Self-Hosted API Dashboard</h2>			
-					<h3>Das Problem</h3>
-				<p>
+            <div id="dashboardSection" class="tab-content tab-content-arbeit glass">
+                <h2>Self-Hosted API Dashboard</h2>
+                <h3>Das Problem</h3>
+                <p>
                     Alerts wurden per E-Mail an eine gemeinsame Mailbox gesendet. Das Problem: Auch <strong>bereits gelöste Alerts</strong>
                     blieben als E-Mails bestehen und mussten manuell geprüft werden, um festzustellen, ob sie noch relevant waren.
                     Das führte zu unnötigem Aufwand, Unterbrechungen und verlorenem Fokus auf die wirklich kritischen Probleme.
@@ -558,10 +595,9 @@
                     Dadurch entfiel die Notwendigkeit ständiger Absprachen im Team. Jeder Supporter konnte eigenständig
                     erkennen, wo der dringendste Handlungsbedarf besteht – <strong>ohne nachdenken zu müssen</strong>.
                 </p>
-
                 <p><strong>Das Ergebnis:</strong></p>
                 <ul class="highlight-list">
-					<li>✅ Echtzeit-Dashboard zeigt nur aktive, relevante Alerts</li>
+                    <li>✅ Echtzeit-Dashboard zeigt nur aktive, relevante Alerts</li>
                     <li>✅ Zentrales Alert-Dashboard mit Priorisierung und Kategorisierung</li>
                     <li>✅ Automatische Aufgabenverteilung ohne manuelle Koordination</li>
                     <li>✅ Deutlich schnellere Reaktionszeiten auf kritische Incidents</li>
@@ -570,35 +606,123 @@
             </div>
         </div>
 
-        <!-- Kontakt Section -->
-        <div id="kontaktSection" class="about-content">
-            <h2 class="section-title">Kontakt</h2>
+        <!-- WERDEGANG -->
+        <div id="werdegang" class="about-content glass">
+            <h2>Werdegang</h2>
+            <div class="timeline">
+                <div class="timeline-entry">
+                    <div class="timeline-date">07/2025 – heute</div>
+                    <div class="timeline-role">RMM & PSA Specialist</div>
+                    <div class="timeline-place">care4IT AG, Schweiz</div>
+                    <div class="timeline-desc">
+                        - PSA-Plattform Konzeption und Anpassung<br>
+                        - Geschäftsprozessautomatisierung und Integration externer Tools<br>
+                        - Qualitätssicherung, Prozessoptimierung
+                    </div>
+                </div>
 
+                <div class="timeline-entry">
+                    <div class="timeline-date">03/2024 – 06/2025</div>
+                    <div class="timeline-role">RMM Specialist</div>
+                    <div class="timeline-place">care4IT AG, Schweiz</div>
+                    <div class="timeline-desc">
+                        - Automatisiertes Monitoring, Patch-Management (NinjaOne)<br>
+                        - Effizienzsteigerung, technische Implementierung von Innovationen<br>
+                        - Kunden-Onboardings & Integration
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-date">12/2022 – 02/2024</div>
+                    <div class="timeline-role">Stv. Abteilungsleiter Managed Services</div>
+                    <div class="timeline-place">ICN GmbH Co. KG, Deutschland</div>
+                    <div class="timeline-desc">
+                        - Führungsverantwortung im Managed Services Bereich
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-date">06/2020 – 02/2024</div>
+                    <div class="timeline-role">Applikationsspezialist RMM</div>
+                    <div class="timeline-place">ICN GmbH Co. KG, Deutschland</div>
+                    <div class="timeline-desc">
+                        - Monitoring-Produkt Entwicklung & Wartung<br>
+                        - Patchmanagement, Deployment-Lösungen<br>
+                        - Prozessautomatisierung, interne Schulungen, Kundenbetreuung
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-date">2017 – 2020</div>
+                    <div class="timeline-role">Fachinformatiker Systemintegration (Ausbildung)</div>
+                    <div class="timeline-place">Robert-Bosch-Berufskolleg Dortmund</div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-date">2009 – 2017</div>
+                    <div class="timeline-role">Abitur</div>
+                    <div class="timeline-place">Leibniz-Gymnasium Dortmund</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- KONTAKT -->
+        <div id="kontaktSection" class="about-content glass">
+            <h2>Kontakt</h2>
             <div class="contact-grid">
                 <div class="contact-item">
-                    <h3>E-Mail</h3>
+                    <h3><i class="fa-solid fa-envelope"></i> E-Mail</h3>
                     <a href="mailto:contact@marvininja.ch">contact@marvininja.ch</a>
                 </div>
 
                 <div class="contact-item">
-                    <h3>Telefon</h3>
+                    <h3><i class="fa-solid fa-phone"></i> Telefon</h3>
                     <a href="tel:+4915679652219">Geschäftlich: +49 15679 652 219</a>
                 </div>
 
                 <div class="contact-item">
-                    <h3>Privat</h3>
+                    <h3><i class="fa-solid fa-lock"></i> Privat</h3>
                     <p class="contact-note">Diese Nummer ist nur für persönliche Kontakte (z. B. WhatsApp) vorgesehen und steht nicht öffentlich zur Verfügung.</p>
                 </div>
             </div>
         </div>
 
         <footer>
-            <p>© 2025 Marvin – Alle Rechte vorbehalten</p>
+            <p>© 2025 Marvin Graupner – Alle Rechte vorbehalten</p>
         </footer>
     </div>
 
     <script>
-        // Show main section
+        // Typing Animation
+        const roles = [
+            "RMM & PSA Specialist",
+            "Prozessoptimierer",
+            "IT-Automatisierer",
+            "Powershell & Python Developer",
+            "System Architect"
+        ];
+        let currentRole = 0, charIndex = 0, reverse = false;
+        const typedElem = document.getElementById('typed');
+
+        function typeAnim() {
+            if (!reverse && charIndex < roles[currentRole].length) {
+                typedElem.textContent = roles[currentRole].slice(0, ++charIndex) + " |";
+                setTimeout(typeAnim, 70);
+            } else if (!reverse) {
+                reverse = true;
+                setTimeout(typeAnim, 1500);
+            } else if (charIndex > 0) {
+                typedElem.textContent = roles[currentRole].slice(0, --charIndex) + " |";
+                setTimeout(typeAnim, 40);
+            } else {
+                reverse = false;
+                currentRole = (currentRole + 1) % roles.length;
+                setTimeout(typeAnim, 500);
+            }
+        }
+        typeAnim();
+
+        // Show Section
         function showSection(sectionId, event) {
             if (event) {
                 event.preventDefault();
@@ -624,21 +748,18 @@
             if (firstTab) {
                 const allTabs = targetSection.querySelectorAll('.tab-content');
                 allTabs.forEach(tab => tab.classList.remove('open'));
-
                 firstTab.classList.add('open');
 
                 const subNav = targetSection.querySelector('.subnav');
                 if (subNav) {
                     const subBtns = subNav.querySelectorAll('.sub-btn');
                     subBtns.forEach(btn => btn.classList.remove('active-btn'));
-                    if (subBtns[0]) {
-                        subBtns[0].classList.add('active-btn');
-                    }
+                    if (subBtns[0]) subBtns[0].classList.add('active-btn');
                 }
             }
         }
 
-        // Show tab within a section
+        // Show Tab
         function showTab(tabGroup, tabId, element) {
             event.preventDefault();
             event.stopPropagation();
@@ -653,9 +774,7 @@
             }
 
             const targetTab = document.getElementById(tabId);
-            if (targetTab) {
-                targetTab.classList.add('open');
-            }
+            if (targetTab) targetTab.classList.add('open');
 
             element.classList.add('active-btn');
         }
