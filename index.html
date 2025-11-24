@@ -444,9 +444,9 @@
             <nav>
                 <a href="javascript:void(0);" onclick="showSection('lebenSection', event)" class="active-btn" id="lebenBtn">Leben</a>
                 <a href="javascript:void(0);" onclick="showSection('arbeitSection', event)" id="arbeitBtn">Arbeit</a>
-                <a href="javascript:void(0);" onclick="showSection('werdegang', event)" id="werdegangBtn">Werdegang</a>
                 <a href="javascript:void(0);" onclick="showSection('kontaktSection', event)" id="kontaktBtn">Kontakt</a>
             </nav>
+
         </header>
 
         <!-- LEBEN -->
@@ -493,30 +493,76 @@
         <!-- ARBEIT -->
         <div id="arbeitSection" class="about-content">
             <div class="subnav" data-tab-group="arbeit">
-                <a href="javascript:void(0);" onclick="showTab('arbeit', 'ueberMichSection', this)" class="btn sub-btn active-btn">Über mich</a>
+                <a href="javascript:void(0);" onclick="showTab('arbeit', 'werdegangSection', this)" class="btn sub-btn">Werdegang</a>
                 <a href="javascript:void(0);" onclick="showTab('arbeit', 'projekt1Section', this)" class="btn sub-btn">Abschlussprojekt</a>
                 <a href="javascript:void(0);" onclick="showTab('arbeit', 'ninjaoneSection', this)" class="btn sub-btn">NinjaOne Transformation</a>
                 <a href="javascript:void(0);" onclick="showTab('arbeit', 'dashboardSection', this)" class="btn sub-btn">Realtime Dashboard</a>
             </div>
+            
+        <!-- WERDEGANG -->
+        <div id="werdegangSection" class="tab-content tab-content-arbeit open glass">
+            <h2>Werdegang</h2>
+            <div class="timeline">
+                <div class="timeline-entry">
+                    <div class="timeline-date">07/2025 – heute</div>
+                    <div class="timeline-role">RMM & PSA Specialist</div>
+                    <div class="timeline-place">care4IT AG, Schweiz</div>
+                    <div class="timeline-desc">
+                        - PSA-Plattform Konzeption und Anpassung<br>
+                        - Geschäftsprozessautomatisierung und Integration externer Tools<br>
+                        - Qualitätssicherung, Prozessoptimierung
+                    </div>
+                </div>
 
-            <div id="ueberMichSection" class="tab-content tab-content-arbeit open glass">
-                <h2>Arbeit</h2>
-                <h3>Über mich</h3>
-                <p>
-                    Seit <strong>2017</strong> bin ich in der IT-MSP-Branche als IT-Dienstleister tätig.<br>
-                    <strong>2019</strong> übernahm ich die Rolle des <strong>Applikationsspezialisten mit Schwerpunkt im Bereich
-                    <em>Remote Monitoring & Management (RMM)</em></strong> und gewann erste Erfahrungen als <strong>Führungsperson.</strong><br>
-                    Seit <strong>2023</strong> liegt mein Fokus verstärkt auf <strong>Prozessautomatisierung</strong>.<br>
-                    und seit <strong>2024</strong> beschäftige ich mich intensiv mit <strong>Künstlicher Intelligenz</strong>,
-                    um maßgeschneiderte Lösungen in IT-Prozesse zu integrieren und neue Potenziale zu erschließen.
-                </p>
-                <ul class="highlight-list">
-                    <li>⚙️ Betreuung, Weiterentwicklung & Optimierung komplexer Anwendungssysteme</li>
-                    <li>📡 Überwachung, Aktualisierung & Verwaltung von Kundensystemen</li>
-                    <li>📊 Berichterstattung, Qualitätssicherung & Kundenberatung</li>
-                    <li>🚀 Innovationsentwicklung zur stetigen Service-Verbesserung</li>
-                </ul>
+                <div class="timeline-entry">
+                    <div class="timeline-date">03/2024 – 06/2025</div>
+                    <div class="timeline-role">RMM Specialist</div>
+                    <div class="timeline-place">care4IT AG, Schweiz</div>
+                    <div class="timeline-desc">
+                        - Automatisiertes Monitoring, Patch-Management (NinjaOne)<br>
+                        - Effizienzsteigerung, technische Implementierung von Innovationen<br>
+                        - Kunden-Onboardings & Integration
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-date">12/2022 – 02/2024</div>
+                    <div class="timeline-role">Stv. Abteilungsleiter Managed Services</div>
+                    <div class="timeline-place">ICN GmbH Co. KG, Deutschland</div>
+                    <div class="timeline-desc">
+                        - Führungsverantwortung im Managed Services Bereich
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-date">06/2020 – 02/2024</div>
+                    <div class="timeline-role">Applikationsspezialist RMM</div>
+                    <div class="timeline-place">ICN GmbH Co. KG, Deutschland</div>
+                    <div class="timeline-desc">
+                        - Monitoring-Produkt Entwicklung & Wartung<br>
+                        - Patchmanagement, Deployment-Lösungen<br>
+                        - Prozessautomatisierung, interne Schulungen, Kundenbetreuung und Onboardings
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-date">2017 – 2020</div>
+                    <div class="timeline-role">Fachinformatiker Systemintegration (Ausbildung)</div>
+                    <div class="timeline-place">Robert-Bosch-Berufskolleg Dortmund & ICN GmbH Co. KG, Deutschland</div>
+                    <div class="timeline-desc">
+                        - 2 Jahre Monitoring & Support Remote & Vor Ort mit Kundenverantwortung<br>
+                        - 1 Jahr Managed Services Monitoring, Patchmanagement, Powershell <br>
+                            und Projekte, wie automatisiertes Server Patching und Windows 7 -> 10 Upgrades<br>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-date">2009 – 2017</div>
+                    <div class="timeline-role">Abitur</div>
+                    <div class="timeline-place">Leibniz-Gymnasium Dortmund</div>
+                </div>
             </div>
+        </div>
 
             <div id="projekt1Section" class="tab-content tab-content-arbeit glass">
                 <h2>Automatisiertes Server-Patchmanagement</h2>
@@ -606,70 +652,6 @@
             </div>
         </div>
 
-        <!-- WERDEGANG -->
-        <div id="werdegang" class="about-content glass">
-            <h2>Werdegang</h2>
-            <div class="timeline">
-                <div class="timeline-entry">
-                    <div class="timeline-date">07/2025 – heute</div>
-                    <div class="timeline-role">RMM & PSA Specialist</div>
-                    <div class="timeline-place">care4IT AG, Schweiz</div>
-                    <div class="timeline-desc">
-                        - PSA-Plattform Konzeption und Anpassung<br>
-                        - Geschäftsprozessautomatisierung und Integration externer Tools<br>
-                        - Qualitätssicherung, Prozessoptimierung
-                    </div>
-                </div>
-
-                <div class="timeline-entry">
-                    <div class="timeline-date">03/2024 – 06/2025</div>
-                    <div class="timeline-role">RMM Specialist</div>
-                    <div class="timeline-place">care4IT AG, Schweiz</div>
-                    <div class="timeline-desc">
-                        - Automatisiertes Monitoring, Patch-Management (NinjaOne)<br>
-                        - Effizienzsteigerung, technische Implementierung von Innovationen<br>
-                        - Kunden-Onboardings & Integration
-                    </div>
-                </div>
-
-                <div class="timeline-entry">
-                    <div class="timeline-date">12/2022 – 02/2024</div>
-                    <div class="timeline-role">Stv. Abteilungsleiter Managed Services</div>
-                    <div class="timeline-place">ICN GmbH Co. KG, Deutschland</div>
-                    <div class="timeline-desc">
-                        - Führungsverantwortung im Managed Services Bereich
-                    </div>
-                </div>
-
-                <div class="timeline-entry">
-                    <div class="timeline-date">06/2020 – 02/2024</div>
-                    <div class="timeline-role">Applikationsspezialist RMM</div>
-                    <div class="timeline-place">ICN GmbH Co. KG, Deutschland</div>
-                    <div class="timeline-desc">
-                        - Monitoring-Produkt Entwicklung & Wartung<br>
-                        - Patchmanagement, Deployment-Lösungen<br>
-                        - Prozessautomatisierung, interne Schulungen, Kundenbetreuung und Onboardings
-                    </div>
-                </div>
-
-                <div class="timeline-entry">
-                    <div class="timeline-date">2017 – 2020</div>
-                    <div class="timeline-role">Fachinformatiker Systemintegration (Ausbildung)</div>
-                    <div class="timeline-place">Robert-Bosch-Berufskolleg Dortmund, Deutschland & ICN GmbH Co. KG, Deutschland</div>
-                    <div class="timeline-desc">
-                        - 2 Jahre Monitoring & Support Remote & Vor Ort mit Kundenverantwortung<br>
-                        - 1 Jahr Managed Services Monitoring, Patchmanagement, Powershell <br>
-                            und Projekte, wie automatisiertes Server Patching und Windows 7 -> 10 Upgrades<br>
-                    </div>
-                </div>
-
-                <div class="timeline-entry">
-                    <div class="timeline-date">2009 – 2017</div>
-                    <div class="timeline-role">Abitur</div>
-                    <div class="timeline-place">Leibniz-Gymnasium Dortmund, Deutschland</div>
-                </div>
-            </div>
-        </div>
 
         <!-- KONTAKT -->
         <div id="kontaktSection" class="about-content glass">
