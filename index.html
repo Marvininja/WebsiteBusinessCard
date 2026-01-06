@@ -20,7 +20,6 @@
             min-height: 100vh;
         }
 
-
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
             background: linear-gradient(135deg, #0a0e1a 0%, #1a1f35 50%, #0f1419 100%);
@@ -83,6 +82,43 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
+            position: relative;
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(30,38,54,0.8);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50px;
+            padding: 0.4rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 50px;
+            background: transparent;
+            color: #a8a8a8;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, rgba(40,225,218,0.3), rgba(15,52,96,0.4));
+            color: #28e1da;
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: #fff;
         }
 
         header {
@@ -439,6 +475,11 @@
             .timeline {
                 padding-left: 20px;
             }
+
+            .lang-toggle {
+                top: 1rem;
+                right: 1rem;
+            }
         }
 
         ::selection {
@@ -456,29 +497,57 @@
     <div class="orb orb2"></div>
 
     <div class="container">
+        <!-- Language Toggle -->
+        <div class="lang-toggle">
+            <button class="lang-btn active" onclick="setLanguage('de')" id="langDE">DE</button>
+            <button class="lang-btn" onclick="setLanguage('en')" id="langEN">EN</button>
+        </div>
+
         <header>
             <h1 class="hero-title">Nerd, Visionary & Ninja</h1>
-            <p class="hero-subtitle">Marvin Graupner – IT-Spezialist aus Deutschland 🇩🇪 in der Schweiz 🇨🇭</p>
+            <p class="hero-subtitle">
+                <span data-lang="de">Marvin Graupner – IT-Spezialist aus Deutschland 🇩🇪 in der Schweiz 🇨🇭</span>
+                <span data-lang="en" style="display:none;">Marvin Graupner – IT Specialist from Germany 🇩🇪 based in Switzerland 🇨🇭</span>
+            </p>
             <div class="typed" id="typed"></div>
 
             <nav>
-                <a href="javascript:void(0);" onclick="showSection('lebenSection', event)" class="active-btn" id="lebenBtn">Leben</a>
-                <a href="javascript:void(0);" onclick="showSection('arbeitSection', event)" id="arbeitBtn">Arbeit</a>
-                <a href="javascript:void(0);" onclick="showSection('kontaktSection', event)" id="kontaktBtn">Kontakt</a>
+                <a href="javascript:void(0);" onclick="showSection('lebenSection', event)" class="active-btn" id="lebenBtn">
+                    <span data-lang="de">Leben</span>
+                    <span data-lang="en" style="display:none;">Life</span>
+                </a>
+                <a href="javascript:void(0);" onclick="showSection('arbeitSection', event)" id="arbeitBtn">
+                    <span data-lang="de">Arbeit</span>
+                    <span data-lang="en" style="display:none;">Work</span>
+                </a>
+                <a href="javascript:void(0);" onclick="showSection('kontaktSection', event)" id="kontaktBtn">
+                    <span data-lang="de">Kontakt</span>
+                    <span data-lang="en" style="display:none;">Contact</span>
+                </a>
             </nav>
-
         </header>
 
-        <!-- LEBEN -->
+        <!-- LEBEN / LIFE -->
         <div id="lebenSection" class="about-content open">
             <div class="subnav" data-tab-group="leben">
-                <a href="javascript:void(0);" onclick="showTab('leben', 'interessenSection', this)" class="btn sub-btn active-btn">Interessen</a>
-                <a href="javascript:void(0);" onclick="showTab('leben', 'auswandernSection', this)" class="btn sub-btn">Mein Schritt in die Schweiz</a>
+                <a href="javascript:void(0);" onclick="showTab('leben', 'interessenSection', this)" class="btn sub-btn active-btn">
+                    <span data-lang="de">Interessen</span>
+                    <span data-lang="en" style="display:none;">Interests</span>
+                </a>
+                <a href="javascript:void(0);" onclick="showTab('leben', 'auswandernSection', this)" class="btn sub-btn">
+                    <span data-lang="de">Mein Schritt in die Schweiz</span>
+                    <span data-lang="en" style="display:none;">My Move to Switzerland</span>
+                </a>
             </div>
 
             <div id="interessenSection" class="tab-content tab-content-leben open glass">
-                <h2>Leben</h2>
-                <ul class="highlight-list">
+                <h2>
+                    <span data-lang="de">Leben</span>
+                    <span data-lang="en" style="display:none;">Life</span>
+                </h2>
+                
+                <!-- German Version -->
+                <ul class="highlight-list" data-lang="de">
                     <li>📚 <strong>Lernen & Lesen:</strong> Stetige Weiterentwicklung durch Bücher, Artikel & Studien</li>
                     <li>🏃‍♂️ <strong>Sport:</strong> HIIT-Workout, Laufen, Sprinttraining – Körper und Geist in Bewegung</li>
                     <li>🏍️ <strong>Töff:</strong> Leidenschaft für Motoren, Motorräder & Technik</li>
@@ -486,198 +555,437 @@
                     <li>🤔 <strong>Philosophie:</strong> Sinnsuche, Selbstreflexion und innere Ruhe – inspiriert von Denkern wie <strong>Nietzsche, Descartes, Sartre, Jung</strong> und der stoischen Klarheit <strong>Marc Aurels</strong></li>
                     <li>☦️ <strong>Religion:</strong> Christliche Weltanschauung, Glaube als Lebensanker und Orientierung</li>
                 </ul>
+                
+                <!-- English Version -->
+                <ul class="highlight-list" data-lang="en" style="display:none;">
+                    <li>📚 <strong>Learning & Reading:</strong> Continuous self-improvement through books, articles & studies</li>
+                    <li>🏃‍♂️ <strong>Sports:</strong> HIIT workouts, running, sprint training – keeping body and mind in motion</li>
+                    <li>🏍️ <strong>Motorcycles:</strong> Passion for engines, motorcycles & technology</li>
+                    <li>🧠 <strong>Psychology:</strong> Understanding, analyzing, and reflecting on human behavior</li>
+                    <li>🤔 <strong>Philosophy:</strong> Search for meaning, self-reflection and inner peace – inspired by thinkers like <strong>Nietzsche, Descartes, Sartre, Jung</strong> and the stoic clarity of <strong>Marcus Aurelius</strong></li>
+                    <li>☦️ <strong>Religion:</strong> Christian worldview, faith as an anchor and compass in life</li>
+                </ul>
             </div>
 
             <div id="auswandernSection" class="tab-content tab-content-leben glass">
-                <h2>Mein Schritt in die Schweiz 🇨🇭</h2>
-                <p>
-                    Anfang 2024 habe ich Deutschland verlassen und bin in die Schweiz ausgewandert.
-                    <strong>Es war lange ein Gedanke, der zu einem Traum wurde</strong> und nicht nur ein beruflicher Firmenwechsel,
-                    sondern auch ein <strong>bewusster Absprung</strong> von einem System, das sich für mich zunehmend wie ein
-                    sinkendes Schiff anfühlte.
-                </p>
-                <p>
-                    Die gesellschaftliche Entwicklung in Deutschland – geprägt von <strong>wachsender Ineffizienz, Bürokratie
-                    und Ellenbogenmentalität</strong> – stand im starken Kontrast zu dem, was ich in der Schweiz vorfand:
-                    <strong>ein respektvollerer Umgang, mehr Miteinander und ein funktionierendes Gemeinwesen.</strong>
-                </p>
-                <p>
-                    Diese gesellschaftliche Qualität ist <strong>nicht selbstverständlich</strong>. Sie ist ein <strong>hohes Gut,
-                    das es zu bewahren gilt</strong> – denn sie kann schnell verloren gehen, wenn man nicht achtsam bleibt.
-                    Ich bin <strong>dankbar</strong>, hier leben und wirken zu dürfen, und trage gerne meinen Teil dazu bei,
-                    dass dieses Miteinander <strong>erhalten</strong> bleibt.
-                </p>
+                <h2>
+                    <span data-lang="de">Mein Schritt in die Schweiz 🇨🇭</span>
+                    <span data-lang="en" style="display:none;">My Journey to Switzerland 🇨🇭</span>
+                </h2>
+                
+                <!-- German Version -->
+                <div data-lang="de">
+                    <p>
+                        Anfang 2024 habe ich Deutschland verlassen und bin in die Schweiz ausgewandert.
+                        <strong>Es war lange ein Gedanke, der zu einem Traum wurde</strong> und nicht nur ein beruflicher Firmenwechsel,
+                        sondern auch ein <strong>bewusster Absprung</strong> von einem System, das sich für mich zunehmend wie ein
+                        sinkendes Schiff anfühlte.
+                    </p>
+                    <p>
+                        Die gesellschaftliche Entwicklung in Deutschland, geprägt von <strong>wachsender Ineffizienz, Bürokratie
+                        und Ellenbogenmentalität</strong>, stand im starken Kontrast zu dem, was ich in der Schweiz vorfand:
+                        <strong>ein respektvollerer Umgang, mehr Miteinander und ein funktionierendes Gemeinwesen.</strong>
+                    </p>
+                    <p>
+                        Diese gesellschaftliche Qualität ist <strong>nicht selbstverständlich</strong>. Sie ist ein <strong>hohes Gut,
+                        das es zu bewahren gilt</strong>, denn sie kann schnell verloren gehen, wenn man nicht achtsam bleibt.
+                        Ich bin <strong>dankbar</strong>, hier leben und wirken zu dürfen, und trage gerne meinen Teil dazu bei,
+                        dass dieses Miteinander <strong>erhalten</strong> bleibt.
+                    </p>
+                </div>
+                
+                <!-- English Version -->
+                <div data-lang="en" style="display:none;">
+                    <p>
+                        In early 2024, I left Germany and emigrated to Switzerland.
+                        <strong>It had long been a thought that grew into a dream</strong> – not just a career change,
+                        but a <strong>deliberate leap</strong> from a system that increasingly felt like a
+                        sinking ship to me.
+                    </p>
+                    <p>
+                        The societal development in Germany – characterized by <strong>growing inefficiency, bureaucracy,
+                        and a cutthroat mentality</strong> – stood in huge contrast to what I found in Switzerland:
+                        <strong>more respectful interactions, stronger community spirit, and a functioning society.</strong>
+                    </p>
+                    <p>
+                        This societal quality is <strong>not to be taken for granted</strong>. It is a <strong>precious asset
+                        worth preserving</strong>, as it can quickly be lost if one is not mindful.
+                        I am <strong>grateful</strong> to live and work here, and I gladly contribute my part to
+                        ensuring this sense of community <strong>endures</strong>.
+                    </p>
+                </div>
             </div>
         </div>
 
-        <!-- ARBEIT -->
+        <!-- ARBEIT / WORK -->
         <div id="arbeitSection" class="about-content">
             <div class="subnav" data-tab-group="arbeit">
-                <a href="javascript:void(0);" onclick="showTab('arbeit', 'werdegangSection', this)" class="btn sub-btn">Werdegang</a>
-                <a href="javascript:void(0);" onclick="showTab('arbeit', 'projekt1Section', this)" class="btn sub-btn">Abschlussprojekt</a>
-                <a href="javascript:void(0);" onclick="showTab('arbeit', 'ninjaoneSection', this)" class="btn sub-btn">NinjaOne Transformation</a>
-                <a href="javascript:void(0);" onclick="showTab('arbeit', 'dashboardSection', this)" class="btn sub-btn">Realtime Dashboard</a>
+                <a href="javascript:void(0);" onclick="showTab('arbeit', 'werdegangSection', this)" class="btn sub-btn">
+                    <span data-lang="de">Werdegang</span>
+                    <span data-lang="en" style="display:none;">Career</span>
+                </a>
+                <a href="javascript:void(0);" onclick="showTab('arbeit', 'projekt1Section', this)" class="btn sub-btn">
+                    <span data-lang="de">Abschlussprojekt</span>
+                    <span data-lang="en" style="display:none;">Final Project</span>
+                </a>
+                <a href="javascript:void(0);" onclick="showTab('arbeit', 'ninjaoneSection', this)" class="btn sub-btn">
+                    <span data-lang="de">NinjaOne Transformation</span>
+                    <span data-lang="en" style="display:none;">NinjaOne Transformation</span>
+                </a>
+                <a href="javascript:void(0);" onclick="showTab('arbeit', 'dashboardSection', this)" class="btn sub-btn">
+                    <span data-lang="de">Realtime Dashboard</span>
+                    <span data-lang="en" style="display:none;">Realtime Dashboard</span>
+                </a>
             </div>
             
-        <!-- WERDEGANG -->
-        <div id="werdegangSection" class="tab-content tab-content-arbeit open glass">
-            <h2>Werdegang</h2>
-            <div class="timeline">
-                <div class="timeline-entry">
-                    <div class="timeline-date">07/2025 – heute</div>
-                    <div class="timeline-role">RMM & PSA Specialist</div>
-                    <div class="timeline-place">care4IT AG, Schweiz</div>
-                    <div class="timeline-desc">
-                        - PSA-Plattform Konzeption und Anpassung<br>
-                        - Geschäftsprozessautomatisierung und Integration externer Tools<br>
-                        - Qualitätssicherung, Prozessoptimierung
-                        - zusätzliche Verantwortung als RMM Specialist - Doppelrolle
+            <!-- WERDEGANG / CAREER -->
+            <div id="werdegangSection" class="tab-content tab-content-arbeit open glass">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.8rem;">
+                    <h2 style="margin-bottom: 0;">
+                        <span data-lang="de">Werdegang</span>
+                        <span data-lang="en" style="display:none;">Career</span>
+                    </h2>
+                    <a href="https://www.linkedin.com/in/marvin-graupner-685604279/" target="_blank" rel="noopener noreferrer" 
+                       style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; 
+                              background: rgba(10, 102, 194, 0.2); border: 1px solid rgba(10, 102, 194, 0.4); 
+                              border-radius: 8px; color: #0a66c2; text-decoration: none; font-size: 0.95rem; 
+                              font-weight: 600; transition: all 0.3s ease;"
+                       onmouseover="this.style.background='rgba(10, 102, 194, 0.35)'; this.style.borderColor='#0a66c2'; this.style.transform='translateY(-2px)';"
+                       onmouseout="this.style.background='rgba(10, 102, 194, 0.2)'; this.style.borderColor='rgba(10, 102, 194, 0.4)'; this.style.transform='translateY(0)';">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <span data-lang="de">LinkedIn Profil</span>
+                        <span data-lang="en" style="display:none;">LinkedIn Profile</span>
+                    </a>
+                </div>
+                
+                <!-- German Timeline -->
+                <div class="timeline" data-lang="de">
+                    <div class="timeline-entry">
+                        <div class="timeline-date">07/2025 – heute</div>
+                        <div class="timeline-role">RMM & PSA Specialist</div>
+                        <div class="timeline-place">care4IT AG, Schweiz</div>
+                        <div class="timeline-desc">
+                            - PSA-Plattform Konzeption und Anpassung<br>
+                            - Geschäftsprozessautomatisierung und Integration externer Tools<br>
+                            - Qualitätssicherung, Prozessoptimierung<br>
+                            - zusätzliche Verantwortung als RMM Specialist - Doppelrolle
+                        </div>
+                    </div>
+
+                    <div class="timeline-entry">
+                        <div class="timeline-date">03/2024 – 06/2025</div>
+                        <div class="timeline-role">RMM Specialist</div>
+                        <div class="timeline-place">care4IT AG, Schweiz</div>
+                        <div class="timeline-desc">
+                            - Automatisierungen<br>
+                            - Monitoring, Patch-Management (NinjaOne)<br>
+                            - Effizienzsteigerung, technische Implementierung von Innovationen<br>
+                            - Kunden-Onboardings & Integration
+                        </div>
+                    </div>
+
+                    <div class="timeline-entry">
+                        <div class="timeline-date">12/2022 – 02/2024</div>
+                        <div class="timeline-role">Stv. Abteilungsleiter Managed Services</div>
+                        <div class="timeline-place">ICN GmbH Co. KG, Deutschland</div>
+                        <div class="timeline-desc">
+                            - Führungsverantwortung im Managed Services Bereich
+                        </div>
+                    </div>
+
+                    <div class="timeline-entry">
+                        <div class="timeline-date">06/2020 – 02/2024</div>
+                        <div class="timeline-role">Applikationsspezialist RMM</div>
+                        <div class="timeline-place">ICN GmbH Co. KG, Deutschland</div>
+                        <div class="timeline-desc">
+                            - Monitoring-Produkt Entwicklung & Wartung<br>
+                            - Patchmanagement, Deployment-Lösungen<br>
+                            - Prozessautomatisierung, interne Schulungen, Kundenbetreuung und Onboardings
+                        </div>
+                    </div>
+
+                    <div class="timeline-entry">
+                        <div class="timeline-date">2017 – 2020</div>
+                        <div class="timeline-role">Fachinformatiker Systemintegration (Ausbildung)</div>
+                        <div class="timeline-place">Robert-Bosch-Berufskolleg Dortmund & ICN GmbH Co. KG, Deutschland</div>
+                        <div class="timeline-desc">
+                            - 2 Jahre Monitoring & Support Remote & Vor Ort mit Kundenverantwortung<br>
+                            - 1 Jahr Managed Services Monitoring, Patchmanagement, Powershell<br>
+                            und Projekte, wie automatisiertes Server Patching und Windows 7 -> 10 Upgrades
+                        </div>
+                    </div>
+
+                    <div class="timeline-entry">
+                        <div class="timeline-date">2009 – 2017</div>
+                        <div class="timeline-role">Abitur</div>
+                        <div class="timeline-place">Leibniz-Gymnasium Dortmund</div>
                     </div>
                 </div>
-
-                <div class="timeline-entry">
-                    <div class="timeline-date">03/2024 – 06/2025</div>
-                    <div class="timeline-role">RMM Specialist</div>
-                    <div class="timeline-place">care4IT AG, Schweiz</div>
-                    <div class="timeline-desc">
-                        - Automatisierungen
-                        - Monitoring, Patch-Management (NinjaOne)<br>
-                        - Effizienzsteigerung, technische Implementierung von Innovationen<br>
-                        - Kunden-Onboardings & Integration
+                
+                <!-- English Timeline -->
+                <div class="timeline" data-lang="en" style="display:none;">
+                    <div class="timeline-entry">
+                        <div class="timeline-date">07/2025 – present</div>
+                        <div class="timeline-role">RMM & PSA Specialist</div>
+                        <div class="timeline-place">care4IT AG, Switzerland</div>
+                        <div class="timeline-desc">
+                            - PSA platform design and customization<br>
+                            - Business process automation and external tool integration<br>
+                            - Quality assurance, process optimization<br>
+                            - Additional responsibility as RMM Specialist - dual role
+                        </div>
                     </div>
-                </div>
 
-                <div class="timeline-entry">
-                    <div class="timeline-date">12/2022 – 02/2024</div>
-                    <div class="timeline-role">Stv. Abteilungsleiter Managed Services</div>
-                    <div class="timeline-place">ICN GmbH Co. KG, Deutschland</div>
-                    <div class="timeline-desc">
-                        - Führungsverantwortung im Managed Services Bereich
+                    <div class="timeline-entry">
+                        <div class="timeline-date">03/2024 – 06/2025</div>
+                        <div class="timeline-role">RMM Specialist</div>
+                        <div class="timeline-place">care4IT AG, Switzerland</div>
+                        <div class="timeline-desc">
+                            - Automation development<br>
+                            - Monitoring, Patch Management (NinjaOne)<br>
+                            - Efficiency improvements, technical implementation of innovations<br>
+                            - Customer onboarding & integration
+                        </div>
                     </div>
-                </div>
 
-                <div class="timeline-entry">
-                    <div class="timeline-date">06/2020 – 02/2024</div>
-                    <div class="timeline-role">Applikationsspezialist RMM</div>
-                    <div class="timeline-place">ICN GmbH Co. KG, Deutschland</div>
-                    <div class="timeline-desc">
-                        - Monitoring-Produkt Entwicklung & Wartung<br>
-                        - Patchmanagement, Deployment-Lösungen<br>
-                        - Prozessautomatisierung, interne Schulungen, Kundenbetreuung und Onboardings
+                    <div class="timeline-entry">
+                        <div class="timeline-date">12/2022 – 02/2024</div>
+                        <div class="timeline-role">Deputy Head of Managed Services</div>
+                        <div class="timeline-place">ICN GmbH Co. KG, Germany</div>
+                        <div class="timeline-desc">
+                            - Leadership responsibility in Managed Services department
+                        </div>
                     </div>
-                </div>
 
-                <div class="timeline-entry">
-                    <div class="timeline-date">2017 – 2020</div>
-                    <div class="timeline-role">Fachinformatiker Systemintegration (Ausbildung)</div>
-                    <div class="timeline-place">Robert-Bosch-Berufskolleg Dortmund & ICN GmbH Co. KG, Deutschland</div>
-                    <div class="timeline-desc">
-                        - 2 Jahre Monitoring & Support Remote & Vor Ort mit Kundenverantwortung<br>
-                        - 1 Jahr Managed Services Monitoring, Patchmanagement, Powershell <br>
-                            und Projekte, wie automatisiertes Server Patching und Windows 7 -> 10 Upgrades<br>
+                    <div class="timeline-entry">
+                        <div class="timeline-date">06/2020 – 02/2024</div>
+                        <div class="timeline-role">RMM Application Specialist</div>
+                        <div class="timeline-place">ICN GmbH Co. KG, Germany</div>
+                        <div class="timeline-desc">
+                            - Monitoring product development & maintenance<br>
+                            - Patch management, deployment solutions<br>
+                            - Process automation, internal training, customer support and onboarding
+                        </div>
                     </div>
-                </div>
 
-                <div class="timeline-entry">
-                    <div class="timeline-date">2009 – 2017</div>
-                    <div class="timeline-role">Abitur</div>
-                    <div class="timeline-place">Leibniz-Gymnasium Dortmund</div>
+                    <div class="timeline-entry">
+                        <div class="timeline-date">2017 – 2020</div>
+                        <div class="timeline-role">IT Specialist for System Integration (Apprenticeship)</div>
+                        <div class="timeline-place">Robert-Bosch-Berufskolleg Dortmund & ICN GmbH Co. KG, Germany</div>
+                        <div class="timeline-desc">
+                            - 2 years monitoring & support (remote & on-site) with customer responsibility<br>
+                            - 1 year Managed Services monitoring, patch management, PowerShell<br>
+                            and projects like automated server patching and Windows 7 -> 10 upgrades
+                        </div>
+                    </div>
+
+                    <div class="timeline-entry">
+                        <div class="timeline-date">2009 – 2017</div>
+                        <div class="timeline-role">High School Diploma (Abitur)</div>
+                        <div class="timeline-place">Leibniz-Gymnasium Dortmund</div>
+                    </div>
                 </div>
             </div>
-        </div>
 
+            <!-- PROJEKT 1 -->
             <div id="projekt1Section" class="tab-content tab-content-arbeit glass">
-                <h2>Automatisiertes Server-Patchmanagement</h2>
-                <p>
-                    In meiner Projektarbeit habe ich ein automatisiertes Patchmanagement-System auf Basis von
-                    <strong>N-Able N-sight RMM</strong> entwickelt –
-                    einer marktführenden Lösung im Bereich <em>Remote Monitoring & Management</em>.
-                </p>
-                <p>
-                    Zuvor wurden sicherheitskritische Updates manuell durchgeführt, um höchste Qualitäts- und
-                    Compliance-Standards zu erfüllen. Durch gezielte Erweiterung und Umgehung bestehender
-                    Limitationen konnte ich eine Lösung schaffen, die <strong>vollautomatisiert</strong> die gleichen
-                    hohen Standards sicherstellt – bei gleichzeitiger <strong>Reduktion manueller Aufwände auf nahezu null</strong>.
-                </p>
-                <p>
-                    Gleichzeitig wurde erreicht, flächendeckend bei allen Kunden ein <strong>sicheres Konzept</strong> mit <strong>drei
-                    gestaffelten Testgruppen</strong> und einer <strong>Produktivgruppe</strong> umzusetzen. Dadurch konnten
-                    wir jeden Monat die <strong>höchste Verfügbarkeit</strong> und <strong>vollständige Funktionalität der kritischen Systeme</strong> sicherstellen und garantieren.
-                </p>
-                <p><strong>Das Ergebnis:</strong></p>
-                <ul class="highlight-list">
-                    <li>✅ Mehr Effizienz</li>
-                    <li>✅ Weniger Fehlerpotenzial</li>
-                    <li>✅ Mehr Sicherheit</li>
-                    <li>✅ Weniger Ausfälle</li>
-                    <li>✅ Zukunftsfähige, skalierbare IT-Services</li>
-                </ul>
+                <h2>
+                    <span data-lang="de">Automatisiertes Server-Patchmanagement</span>
+                    <span data-lang="en" style="display:none;">Automated Server Patch Management</span>
+                </h2>
+                
+                <!-- German Version -->
+                <div data-lang="de">
+                    <p>
+                        In meiner Projektarbeit habe ich ein automatisiertes Patchmanagement-System auf Basis von
+                        <strong>N-Able N-sight RMM</strong> entwickelt –
+                        einer marktführenden Lösung im Bereich <em>Remote Monitoring & Management</em>.
+                    </p>
+                    <p>
+                        Zuvor wurden sicherheitskritische Updates manuell durchgeführt, um höchste Qualitäts- und
+                        Compliance-Standards zu erfüllen. Durch gezielte Erweiterung und Umgehung bestehender
+                        Limitationen konnte ich eine Lösung schaffen, die <strong>vollautomatisiert</strong> die gleichen
+                        hohen Standards sicherstellt – bei gleichzeitiger <strong>Reduktion manueller Aufwände auf nahezu null</strong>.
+                    </p>
+                    <p>
+                        Gleichzeitig wurde erreicht, flächendeckend bei allen Kunden ein <strong>sicheres Konzept</strong> mit <strong>drei
+                        gestaffelten Testgruppen</strong> und einer <strong>Produktivgruppe</strong> umzusetzen. Dadurch konnten
+                        wir jeden Monat die <strong>höchste Verfügbarkeit</strong> und <strong>vollständige Funktionalität der kritischen Systeme</strong> sicherstellen und garantieren.
+                    </p>
+                    <p><strong>Das Ergebnis:</strong></p>
+                    <ul class="highlight-list">
+                        <li>✅ Mehr Effizienz</li>
+                        <li>✅ Weniger Fehlerpotenzial</li>
+                        <li>✅ Mehr Sicherheit</li>
+                        <li>✅ Weniger Ausfälle</li>
+                        <li>✅ Zukunftsfähige, skalierbare IT-Services</li>
+                    </ul>
+                </div>
+                
+                <!-- English Version -->
+                <div data-lang="en" style="display:none;">
+                    <p>
+                        In my project work, I developed an automated patch management system based on
+                        <strong>N-Able N-sight RMM</strong> –
+                        a market-leading solution in <em>Remote Monitoring & Management</em>.
+                    </p>
+                    <p>
+                        Previously, security-critical updates were performed manually to meet the highest quality and
+                        compliance standards. Through targeted extensions and workarounds for existing
+                        limitations, I created a solution that <strong>fully automatically</strong> ensures the same
+                        high standards – while <strong>reducing manual effort to nearly zero</strong>.
+                    </p>
+                    <p>
+                        At the same time, we achieved a <strong>secure concept</strong> across all customers with <strong>three
+                        staggered test groups</strong> and one <strong>production group</strong>. This allowed us
+                        to guarantee <strong>maximum availability</strong> and <strong>full functionality of critical systems</strong> every month.
+                    </p>
+                    <p><strong>The Result:</strong></p>
+                    <ul class="highlight-list">
+                        <li>✅ Increased efficiency</li>
+                        <li>✅ Reduced error potential</li>
+                        <li>✅ Enhanced security</li>
+                        <li>✅ Fewer outages</li>
+                        <li>✅ Future-proof, scalable IT services</li>
+                    </ul>
+                </div>
             </div>
 
+            <!-- NINJAONE -->
             <div id="ninjaoneSection" class="tab-content tab-content-arbeit glass">
                 <h2>NinjaOne Transformation</h2>
-                <h3>Die Ausgangssituation</h3>
-                <p>
-                    Bevor ich die Rolle des <strong>RMM-Spezialisten</strong> übernahm, herrschte Chaos:
-                    Jeder Mitarbeiter skriptete individuell für seine eigenen Kunden, ohne übergreifende Verantwortung.
-                    Es gab keine zentrale Strategie, keine einheitlichen Standards, wenig Automatisierung – und keine Person, die das große Ganze im Blick hatte.
-                </p>
-                <h3>Meine Lösung: Struktur und Verantwortung</h3>
-                <p>
-                    Ich übernahm die Verantwortung für <strong>NinjaOne</strong> und schuf von Grund auf ein durchdachtes,
-                    kundenübergreifendes System. Fortan war jede Änderung, jedes Skript und jede Konfiguration
-                    für <strong>alle Kunden</strong> profitabel – nicht nur für einzelne.
-                </p>
-                <p>
-                    Durch die Entwicklung zahlreicher <strong>Skripte</strong>, <strong>Überprüfungen</strong>, <strong>Custom Fields</strong> und 
-                    <strong>Monitoring-Graphs</strong> entstand eine konsistente, skalierbare Umgebung, die den gesamten
-                    IT-Support-Prozess revolutionierte.
-                </p>
-                <p><strong>Das Ergebnis:</strong></p>
-                <ul class="highlight-list">
-                    <li>✅ Von individuellem Chaos zu zentraler, kundenübergreifender Verantwortung</li>
-                    <li>✅ Strukturierte NinjaOne-Umgebung mit konsistenten Konfigurationen</li>
-                    <li>✅ Alle Kunden profitieren von jeder Verbesserung gleichermaßen</li>
-                    <li>✅ Skalierbare Automatisierung</li>
-                </ul>
+                
+                <!-- German Version -->
+                <div data-lang="de">
+                    <h3>Die Ausgangssituation</h3>
+                    <p>
+                        Bevor ich die Rolle des <strong>RMM-Spezialisten</strong> übernahm, herrschte Chaos:
+                        Jeder Mitarbeiter skriptete individuell für seine eigenen Kunden, ohne übergreifende Verantwortung.
+                        Es gab keine zentrale Strategie, keine einheitlichen Standards, wenig Automatisierung – und keine Person, die das große Ganze im Blick hatte.
+                    </p>
+                    <h3>Meine Lösung: Struktur und Verantwortung</h3>
+                    <p>
+                        Ich übernahm die Verantwortung für <strong>NinjaOne</strong> und schuf von Grund auf ein durchdachtes,
+                        kundenübergreifendes System. Fortan war jede Änderung, jedes Skript und jede Konfiguration
+                        für <strong>alle Kunden</strong> profitabel – nicht nur für einzelne.
+                    </p>
+                    <p>
+                        Durch die Entwicklung zahlreicher <strong>Skripte</strong>, <strong>Überprüfungen</strong>, <strong>Custom Fields</strong> und 
+                        <strong>Monitoring-Graphs</strong> entstand eine konsistente, skalierbare Umgebung, die den gesamten
+                        IT-Support-Prozess revolutionierte.
+                    </p>
+                    <p><strong>Das Ergebnis:</strong></p>
+                    <ul class="highlight-list">
+                        <li>✅ Von individuellem Chaos zu zentraler, kundenübergreifender Verantwortung</li>
+                        <li>✅ Strukturierte NinjaOne-Umgebung mit konsistenten Konfigurationen</li>
+                        <li>✅ Alle Kunden profitieren von jeder Verbesserung gleichermaßen</li>
+                        <li>✅ Skalierbare Automatisierung</li>
+                    </ul>
+                </div>
+                
+                <!-- English Version -->
+                <div data-lang="en" style="display:none;">
+                    <h3>The Initial Situation</h3>
+                    <p>
+                        Before I took on the role of <strong>RMM Specialist</strong>, chaos reigned:
+                        Each employee scripted individually for their own customers, without overarching responsibility.
+                        There was no central strategy, no unified standards, little automation – and no one with an eye on the big picture.
+                    </p>
+                    <h3>My Solution: Structure and Ownership</h3>
+                    <p>
+                        I took responsibility for <strong>NinjaOne</strong> and built a well-thought-out,
+                        cross-customer system from the ground up. From then on, every change, every script, and every configuration
+                        benefited <strong>all customers</strong> – not just individual ones.
+                    </p>
+                    <p>
+                        Through the development of numerous <strong>scripts</strong>, <strong>checks</strong>, <strong>custom fields</strong>, and 
+                        <strong>monitoring graphs</strong>, a consistent, scalable environment emerged that revolutionized the entire
+                        IT support process.
+                    </p>
+                    <p><strong>The Result:</strong></p>
+                    <ul class="highlight-list">
+                        <li>✅ From individual chaos to centralized, cross-customer responsibility</li>
+                        <li>✅ Structured NinjaOne environment with consistent configurations</li>
+                        <li>✅ All customers benefit equally from every improvement</li>
+                        <li>✅ Scalable automation</li>
+                    </ul>
+                </div>
             </div>
 
+            <!-- DASHBOARD -->
             <div id="dashboardSection" class="tab-content tab-content-arbeit glass">
                 <h2>Self-Hosted API Dashboard</h2>
-                <h3>Das Problem</h3>
-                <p>
-                    Alerts wurden per E-Mail an eine gemeinsame Mailbox gesendet. Das Problem: Auch <strong>bereits gelöste Alerts</strong>
-                    blieben als E-Mails bestehen und mussten manuell geprüft werden, um festzustellen, ob sie noch relevant waren.
-                    Das führte zu unnötigem Aufwand, Unterbrechungen und verlorenem Fokus auf die wirklich kritischen Probleme.
-                </p>
-                <p>
-                    Mein nächstes großes Projekt war die eigene Entwicklung eines <strong>Self-Hosted API Dashboards in Python</strong>,
-                    das eine zentrale Herausforderung löste: die Priorisierung und Übersicht aller aktuellen Alerts.
-                </p>
-                <p>
-                    Das Dashboard aggregiert Alerts in <strong>Fast-Echtzeit</strong>, priorisiert sie automatisch nach
-                    <strong>Kritikalität</strong> und <strong>Priorität</strong> und zeigt jedem Support-Mitarbeiter
-                    auf einen Blick, welche Aufgabe als Nächstes bearbeitet werden muss.
-                </p>
-                <p>
-                    Dadurch entfiel die Notwendigkeit ständiger Absprachen im Team. Jeder Supporter konnte eigenständig
-                    erkennen, wo der dringendste Handlungsbedarf besteht – <strong>ohne nachdenken zu müssen</strong>.
-                </p>
-                <p><strong>Das Ergebnis:</strong></p>
-                <ul class="highlight-list">
-                    <li>✅ Echtzeit-Dashboard zeigt nur aktive, relevante Alerts</li>
-                    <li>✅ Zentrales Alert-Dashboard mit Priorisierung und Kategorisierung</li>
-                    <li>✅ Automatische Aufgabenverteilung ohne manuelle Koordination</li>
-                    <li>✅ Deutlich schnellere Reaktionszeiten auf kritische Incidents</li>
-                    <li>✅ Erhöhte Team-Effizienz und klare Arbeitsabläufe</li>
-                </ul>
+                
+                <!-- German Version -->
+                <div data-lang="de">
+                    <h3>Das Problem</h3>
+                    <p>
+                        Alerts wurden per E-Mail an eine gemeinsame Mailbox gesendet. Das Problem: Auch <strong>bereits gelöste Alerts</strong>
+                        blieben als E-Mails bestehen und mussten manuell geprüft werden, um festzustellen, ob sie noch relevant waren.
+                        Das führte zu unnötigem Aufwand, Unterbrechungen und verlorenem Fokus auf die wirklich kritischen Probleme.
+                    </p>
+                    <p>
+                        Mein nächstes großes Projekt war die eigene Entwicklung eines <strong>Self-Hosted API Dashboards in Python</strong>,
+                        das eine zentrale Herausforderung löste: die Priorisierung und Übersicht aller aktuellen Alerts.
+                    </p>
+                    <p>
+                        Das Dashboard aggregiert Alerts in <strong>Fast-Echtzeit</strong>, priorisiert sie automatisch nach
+                        <strong>Kritikalität</strong> und <strong>Priorität</strong> und zeigt jedem Support-Mitarbeiter
+                        auf einen Blick, welche Aufgabe als Nächstes bearbeitet werden muss.
+                    </p>
+                    <p>
+                        Dadurch entfiel die Notwendigkeit ständiger Absprachen im Team. Jeder Supporter konnte eigenständig
+                        erkennen, wo der dringendste Handlungsbedarf besteht – <strong>ohne nachdenken zu müssen</strong>.
+                    </p>
+                    <p><strong>Das Ergebnis:</strong></p>
+                    <ul class="highlight-list">
+                        <li>✅ Echtzeit-Dashboard zeigt nur aktive, relevante Alerts</li>
+                        <li>✅ Zentrales Alert-Dashboard mit Priorisierung und Kategorisierung</li>
+                        <li>✅ Automatische Aufgabenverteilung ohne manuelle Koordination</li>
+                        <li>✅ Deutlich schnellere Reaktionszeiten auf kritische Incidents</li>
+                        <li>✅ Erhöhte Team-Effizienz und klare Arbeitsabläufe</li>
+                    </ul>
+                </div>
+                
+                <!-- English Version -->
+                <div data-lang="en" style="display:none;">
+                    <h3>The Problem</h3>
+                    <p>
+                        Alerts were sent via email to a shared mailbox. The problem: Even <strong>already resolved alerts</strong>
+                        remained as emails and had to be manually checked to determine if they were still relevant.
+                        This led to unnecessary effort, interruptions, and lost focus on truly critical issues.
+                    </p>
+                    <p>
+                        My next major project was the in-house development of a <strong>self-hosted API dashboard in Python</strong>,
+                        which solved a central challenge: prioritization and overview of all current alerts.
+                    </p>
+                    <p>
+                        The dashboard aggregates alerts in <strong>near real-time</strong>, automatically prioritizes them by
+                        <strong>criticality</strong> and <strong>priority</strong>, and shows each support team member
+                        at a glance which task needs to be addressed next.
+                    </p>
+                    <p>
+                        This eliminated the need for constant team coordination. Each supporter could independently
+                        identify where the most urgent action was needed – <strong>without having to think about it</strong>.
+                    </p>
+                    <p><strong>The Result:</strong></p>
+                    <ul class="highlight-list">
+                        <li>✅ Real-time dashboard shows only active, relevant alerts</li>
+                        <li>✅ Central alert dashboard with prioritization and categorization</li>
+                        <li>✅ Automatic task distribution without manual coordination</li>
+                        <li>✅ Significantly faster response times to critical incidents</li>
+                        <li>✅ Increased team efficiency and clear workflows</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
-
-        <!-- KONTAKT -->
+        <!-- KONTAKT / CONTACT -->
         <div id="kontaktSection" class="about-content glass">
-            <h2>Kontakt</h2>
+            <h2>
+                <span data-lang="de">Kontakt</span>
+                <span data-lang="en" style="display:none;">Contact</span>
+            </h2>
             <div class="contact-grid">
                 <div class="contact-item">
                     <h3><i class="fa-solid fa-envelope"></i> E-Mail</h3>
@@ -685,36 +993,91 @@
                 </div>
 
                 <div class="contact-item">
-                    <h3><i class="fa-solid fa-phone"></i> Telefon</h3>
-                    <a href="tel:+4915679652219">Geschäftlich: +49 15679 652 219</a>
+                    <h3><i class="fa-solid fa-phone"></i> 
+                        <span data-lang="de">Telefon</span>
+                        <span data-lang="en" style="display:none;">Phone</span>
+                    </h3>
+                    <a href="tel:+4915679652219">
+                        <span data-lang="de">Geschäftlich:</span>
+                        <span data-lang="en" style="display:none;">Business:</span>
+                        +49 15679 652 219
+                    </a>
                 </div>
 
                 <div class="contact-item">
-                    <h3><i class="fa-solid fa-lock"></i> Privat</h3>
+                    <h3><i class="fa-solid fa-lock"></i> 
+                        <span data-lang="de">Privat</span>
+                        <span data-lang="en" style="display:none;">Private</span>
+                    </h3>
                     <p class="private-number">+41 <span class="blurred-number">XX XXX XX XX</span></p>
-                    <p class="contact-note">Diese Nummer ist nur für persönliche Kontakte (z. B. WhatsApp) vorgesehen und steht nicht öffentlich zur Verfügung.</p>
+                    <p class="contact-note">
+                        <span data-lang="de">Diese Nummer ist nur für persönliche Kontakte (z. B. WhatsApp) vorgesehen und steht nicht öffentlich zur Verfügung.</span>
+                        <span data-lang="en" style="display:none;">This number is reserved for personal contacts (e.g., WhatsApp) and is not publicly available.</span>
+                    </p>
                 </div>
+
             </div>
         </div>
 
         <footer>
-            <p>© 2025 Marvin Graupner – Alle Rechte vorbehalten</p>
+            <p>© 2025 Marvin Graupner – 
+                <span data-lang="de">Alle Rechte vorbehalten</span>
+                <span data-lang="en" style="display:none;">All rights reserved</span>
+            </p>
         </footer>
     </div>
 
     <script>
-        // Typing Animation
-        const roles = [
+        // Language system
+        let currentLang = 'de';
+
+        const rolesDE = [
             "RMM & PSA Specialist",
             "IT-Automatisierer",
             "Powershell & Python Developer",
             "System Architect",
             "Prozessoptimierer"
         ];
+
+        const rolesEN = [
+            "RMM & PSA Specialist",
+            "IT Automation Expert",
+            "PowerShell & Python Developer",
+            "System Architect",
+            "Process Optimizer"
+        ];
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Update toggle buttons
+            document.getElementById('langDE').classList.toggle('active', lang === 'de');
+            document.getElementById('langEN').classList.toggle('active', lang === 'en');
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+            
+            // Show/hide language-specific content
+            document.querySelectorAll('[data-lang="de"]').forEach(el => {
+                el.style.display = lang === 'de' ? '' : 'none';
+            });
+            document.querySelectorAll('[data-lang="en"]').forEach(el => {
+                el.style.display = lang === 'en' ? '' : 'none';
+            });
+            
+            // Reset typing animation with correct language
+            currentRole = 0;
+            charIndex = 0;
+            reverse = false;
+        }
+
+        // Typing Animation
         let currentRole = 0, charIndex = 0, reverse = false;
         const typedElem = document.getElementById('typed');
 
         function typeAnim() {
+            const roles = currentLang === 'de' ? rolesDE : rolesEN;
+            
             if (!reverse && charIndex < roles[currentRole].length) {
                 typedElem.textContent = roles[currentRole].slice(0, ++charIndex) + " |";
                 setTimeout(typeAnim, 70);
@@ -751,7 +1114,7 @@
             }
 
             if (event && event.target) {
-                event.target.classList.add('active-btn');
+                event.target.closest('a').classList.add('active-btn');
             }
 
             const firstTab = targetSection.querySelector('.tab-content');
