@@ -486,6 +486,10 @@
             position: relative;
         }
 
+        .interest-text {
+            min-width: 0;
+        }
+
         /* ═══════════════════════════════════════
            SWITZERLAND SECTION
            ═══════════════════════════════════════ */
@@ -927,10 +931,31 @@
 
             .interest-grid {
                 grid-template-columns: 1fr;
+                gap: 0.6rem;
             }
 
             .interest-card {
-                padding: 1.5rem;
+                padding: 0.9rem 1rem;
+                display: flex;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .interest-icon {
+                font-size: 1.2rem;
+                margin-bottom: 0;
+                flex-shrink: 0;
+                line-height: 1.5;
+            }
+
+            .interest-card h4 {
+                font-size: 0.95rem;
+                margin-bottom: 0.15rem;
+            }
+
+            .interest-card p {
+                font-size: 0.85rem;
+                line-height: 1.5;
             }
 
             .project {
@@ -1007,8 +1032,8 @@
             </div>
             <h1 class="hero-title">Nerd, Visionary<br>& <span class="accent">Ninja</span></h1>
             <p class="hero-subtitle">
-                <span class="de">RMM & PSA Specialist – Automatisierung, Integration und KI-Engineering für Managed Service Provider.</span>
-                <span class="en">RMM & PSA Specialist – Automation, Integration and AI Engineering for Managed Service Providers.</span>
+                <span class="de">RMM & PSA Specialist – Automatisierung, Integration und Plattform-Engineering für Managed Service Provider.</span>
+                <span class="en">RMM & PSA Specialist – Automation, Integration and Platform Engineering for Managed Service Providers.</span>
             </p>
             <div class="hero-typed" id="typed"><span class="cursor"></span></div>
 
@@ -1034,63 +1059,75 @@
             <div class="interest-grid reveal">
                 <div class="interest-card">
                     <span class="interest-icon">📚</span>
-                    <h4>
-                        <span class="de">Lernen & Lesen</span>
-                        <span class="en">Learning & Reading</span>
-                    </h4>
-                    <p>
-                        <span class="de">Stetige Weiterentwicklung durch Bücher, Artikel & Studien</span>
-                        <span class="en">Continuous self-improvement through books, articles & studies</span>
-                    </p>
+                    <div class="interest-text">
+                        <h4>
+                            <span class="de">Lernen & Lesen</span>
+                            <span class="en">Learning & Reading</span>
+                        </h4>
+                        <p>
+                            <span class="de">Stetige Weiterentwicklung durch Bücher, Artikel & Studien</span>
+                            <span class="en">Continuous self-improvement through books, articles & studies</span>
+                        </p>
+                    </div>
                 </div>
                 <div class="interest-card">
                     <span class="interest-icon">🏃‍♂️</span>
-                    <h4>Sport</h4>
-                    <p>
-                        <span class="de">HIIT-Workout, Laufen, Sprinttraining – Körper und Geist in Bewegung</span>
-                        <span class="en">HIIT workouts, running, sprint training – keeping body and mind in motion</span>
-                    </p>
+                    <div class="interest-text">
+                        <h4>Sport</h4>
+                        <p>
+                            <span class="de">HIIT-Workout, Laufen, Sprinttraining – Körper und Geist in Bewegung</span>
+                            <span class="en">HIIT workouts, running, sprint training – keeping body and mind in motion</span>
+                        </p>
+                    </div>
                 </div>
                 <div class="interest-card">
                     <span class="interest-icon">🏍️</span>
-                    <h4>
-                        <span class="de">Töff</span>
-                        <span class="en">Motorcycles</span>
-                    </h4>
-                    <p>
-                        <span class="de">Leidenschaft für Motoren, Motorräder & Technik</span>
-                        <span class="en">Passion for engines, motorcycles & technology</span>
-                    </p>
+                    <div class="interest-text">
+                        <h4>
+                            <span class="de">Töff</span>
+                            <span class="en">Motorcycles</span>
+                        </h4>
+                        <p>
+                            <span class="de">Leidenschaft für Motoren, Motorräder & Technik</span>
+                            <span class="en">Passion for engines, motorcycles & technology</span>
+                        </p>
+                    </div>
                 </div>
                 <div class="interest-card">
                     <span class="interest-icon">🧠</span>
-                    <h4>
-                        <span class="de">Psychologie</span>
-                        <span class="en">Psychology</span>
-                    </h4>
-                    <p>
-                        <span class="de">Menschliches Verhalten verstehen, analysieren und reflektieren</span>
-                        <span class="en">Understanding, analyzing, and reflecting on human behavior</span>
-                    </p>
+                    <div class="interest-text">
+                        <h4>
+                            <span class="de">Psychologie</span>
+                            <span class="en">Psychology</span>
+                        </h4>
+                        <p>
+                            <span class="de">Menschliches Verhalten verstehen, analysieren und reflektieren</span>
+                            <span class="en">Understanding, analyzing, and reflecting on human behavior</span>
+                        </p>
+                    </div>
                 </div>
                 <div class="interest-card">
                     <span class="interest-icon">🤔</span>
-                    <h4>
-                        <span class="de">Philosophie</span>
-                        <span class="en">Philosophy</span>
-                    </h4>
-                    <p>
-                        <span class="de">Sinnsuche, Selbstreflexion und innere Ruhe – inspiriert von Denkern wie <strong>Nietzsche, Descartes, Sartre, Jung</strong> und der stoischen Klarheit <strong>Marc Aurels</strong></span>
-                        <span class="en">Search for meaning, self-reflection and inner peace – inspired by thinkers like <strong>Nietzsche, Descartes, Sartre, Jung</strong> and the stoic clarity of <strong>Marcus Aurelius</strong></span>
-                    </p>
+                    <div class="interest-text">
+                        <h4>
+                            <span class="de">Philosophie</span>
+                            <span class="en">Philosophy</span>
+                        </h4>
+                        <p>
+                            <span class="de">Sinnsuche, Selbstreflexion und innere Ruhe – inspiriert von Denkern wie <strong>Nietzsche, Descartes, Sartre, Jung</strong> und der stoischen Klarheit <strong>Marc Aurels</strong></span>
+                            <span class="en">Search for meaning, self-reflection and inner peace – inspired by thinkers like <strong>Nietzsche, Descartes, Sartre, Jung</strong> and the stoic clarity of <strong>Marcus Aurelius</strong></span>
+                        </p>
+                    </div>
                 </div>
                 <div class="interest-card">
                     <span class="interest-icon">☦️</span>
-                    <h4>Religion</h4>
-                    <p>
-                        <span class="de">Christliche Weltanschauung, Glaube als Lebensanker und Orientierung</span>
-                        <span class="en">Christian worldview, faith as an anchor and compass in life</span>
-                    </p>
+                    <div class="interest-text">
+                        <h4>Religion</h4>
+                        <p>
+                            <span class="de">Christliche Weltanschauung, Glaube als Lebensanker und Orientierung</span>
+                            <span class="en">Christian worldview, faith as an anchor and compass in life</span>
+                        </p>
+                    </div>
                 </div>
             </div>
 
