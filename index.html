@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="color-scheme" content="dark">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="bingbot" content="noindex, nofollow">
     <title>Marvin Graupner – IT Specialist</title>
     <link rel="icon" type="image/png" href="img/favicons-1.png">
     <link rel="apple-touch-icon" href="img/favicons-1.png">
@@ -156,7 +158,7 @@
             margin: 0 auto;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 0.5rem;
             height: 72px;
         }
 
@@ -166,6 +168,7 @@
             letter-spacing: -0.02em;
             color: var(--text-primary);
             text-decoration: none;
+            margin-right: auto;
         }
 
         .nav-logo span {
@@ -202,34 +205,43 @@
         .nav-lang {
             display: flex;
             align-items: center;
-            margin-left: 1rem;
             gap: 2px;
-            background: rgba(255,255,255,0.04);
-            border-radius: 8px;
-            padding: 3px;
+            background: rgba(40,225,218,0.08);
+            border: 1px solid rgba(40,225,218,0.2);
+            border-radius: 10px;
+            padding: 4px;
+            flex-shrink: 0;
+            margin-left: 0.75rem;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
         }
 
         .lang-btn {
-            padding: 0.35rem 0.75rem;
+            padding: 0.45rem 0.9rem;
             border: none;
-            border-radius: 6px;
+            border-radius: 7px;
             background: transparent;
             color: var(--text-muted);
             font-family: var(--font-mono);
-            font-weight: 500;
-            font-size: 0.78rem;
+            font-weight: 600;
+            font-size: 0.82rem;
             cursor: pointer;
             transition: all 0.25s var(--ease-out);
-            letter-spacing: 0.03em;
+            letter-spacing: 0.04em;
         }
 
         .lang-btn.active {
-            background: var(--accent-dim);
-            color: var(--accent);
+            background: var(--accent);
+            color: var(--bg-deep);
+            box-shadow: 0 0 12px rgba(40,225,218,0.3);
         }
 
         .lang-btn:hover:not(.active) {
-            color: var(--text-secondary);
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.06);
         }
 
         /* ═══════════════════════════════════════
@@ -848,6 +860,11 @@
                 display: flex;
             }
 
+            .nav-lang {
+                margin-left: auto;
+                margin-right: 0.75rem;
+            }
+
             .nav-center {
                 position: fixed;
                 top: 72px;
@@ -879,12 +896,6 @@
             .nav-link {
                 padding: 0.75rem 1rem;
                 width: 100%;
-            }
-
-            .nav-lang {
-                margin-left: 0;
-                margin-top: 0.5rem;
-                align-self: flex-start;
             }
 
             .hero {
@@ -937,6 +948,11 @@
         <div class="nav-inner">
             <a href="#hero" class="nav-logo">marvin<span>.</span></a>
 
+            <div class="nav-lang" id="navLang">
+                    <button class="lang-btn active" onclick="setLang('de')" id="btnDE">DE</button>
+                    <button class="lang-btn" onclick="setLang('en')" id="btnEN">EN</button>
+                </div>
+
             <button class="nav-toggle" id="navToggle" aria-label="Menu">
                 <span></span><span></span><span></span>
             </button>
@@ -959,11 +975,6 @@
                         <span class="de">Kontakt</span>
                         <span class="en">Contact</span>
                     </a>
-                </div>
-
-                <div class="nav-lang">
-                    <button class="lang-btn active" onclick="setLang('de')" id="btnDE">DE</button>
-                    <button class="lang-btn" onclick="setLang('en')" id="btnEN">EN</button>
                 </div>
             </div>
         </div>
@@ -1402,71 +1413,7 @@
                         <span class="en">All customers benefit equally from every improvement</span>
                     </div>
                     <div class="result-item"><span class="check">✓</span>
-                        <span class="de">Skalierbare Automatisierung</span><!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="color-scheme" content="dark">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Marvin Business Card</title>
-    <link rel="icon" type="image/png" href="img/favicons-1.png">
-    <link rel="apple-touch-icon" href="img/favicons-1.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f35 50%, #0f1419 100%);
-            min-height: 100vh;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f35 50%, #0f1419 100%);
-            color: #e8e8e8;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(40,225,218,0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-            animation: bgMove 20s linear infinite;
-        }
-
-        @keyframes bgMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.15;
-            z-index: -1;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .orb1 {
-            top: 10%;
-            left: 20%;
-            width: 400px;
-            height: 400px;
-
+                        <span class="de">Skalierbare Automatisierung</span>
                         <span class="en">Scalable automation</span>
                     </div>
                 </div>
