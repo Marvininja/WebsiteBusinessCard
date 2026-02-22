@@ -47,6 +47,7 @@
             scroll-behavior: smooth;
             background: var(--bg-deep);
             scroll-padding-top: 100px;
+            font-size: 18px;
         }
 
         body {
@@ -57,6 +58,8 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         ::selection {
@@ -154,17 +157,17 @@
         }
 
         .nav-inner {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            height: 72px;
+            height: 80px;
         }
 
         .nav-logo {
             font-weight: 800;
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             letter-spacing: -0.02em;
             color: var(--text-primary);
             text-decoration: none;
@@ -182,12 +185,12 @@
         }
 
         .nav-link {
-            padding: 0.5rem 1.1rem;
+            padding: 0.55rem 1.25rem;
             border-radius: 8px;
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 1rem;
             transition: all 0.25s var(--ease-out);
             position: relative;
         }
@@ -220,14 +223,14 @@
         }
 
         .lang-btn {
-            padding: 0.45rem 0.9rem;
+            padding: 0.5rem 1rem;
             border: none;
             border-radius: 7px;
             background: transparent;
             color: var(--text-muted);
             font-family: var(--font-mono);
             font-weight: 600;
-            font-size: 0.82rem;
+            font-size: 0.88rem;
             cursor: pointer;
             transition: all 0.25s var(--ease-out);
             letter-spacing: 0.04em;
@@ -255,14 +258,14 @@
            LAYOUT
            ═══════════════════════════════════════ */
         .page {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 2.5rem;
         }
 
         section {
-            padding-top: 6rem;
-            padding-bottom: 2rem;
+            padding-top: 7rem;
+            padding-bottom: 2.5rem;
         }
 
         /* ═══════════════════════════════════════
@@ -273,28 +276,28 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding-top: 72px;
+            padding-top: 80px;
             position: relative;
         }
 
         .hero-label {
             font-family: var(--font-mono);
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             color: var(--accent);
             font-weight: 500;
             letter-spacing: 0.08em;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.75rem;
             opacity: 0;
             animation: fadeUp 0.8s var(--ease-out) 0.2s forwards;
         }
 
         .hero-title {
-            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-size: clamp(3.2rem, 7vw, 5.5rem);
             font-weight: 900;
             line-height: 1.05;
             letter-spacing: -0.03em;
             color: var(--text-primary);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.75rem;
             opacity: 0;
             animation: fadeUp 0.8s var(--ease-out) 0.35s forwards;
         }
@@ -307,22 +310,22 @@
         }
 
         .hero-subtitle {
-            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            font-size: clamp(1.15rem, 2vw, 1.45rem);
             color: var(--text-secondary);
             font-weight: 400;
             line-height: 1.6;
-            max-width: 540px;
-            margin-bottom: 2rem;
+            max-width: 620px;
+            margin-bottom: 2.5rem;
             opacity: 0;
             animation: fadeUp 0.8s var(--ease-out) 0.5s forwards;
         }
 
         .hero-typed {
             font-family: var(--font-mono);
-            font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+            font-size: clamp(1.05rem, 1.5vw, 1.25rem);
             color: var(--accent);
             font-weight: 500;
-            min-height: 1.8rem;
+            min-height: 2rem;
             opacity: 0;
             animation: fadeUp 0.8s var(--ease-out) 0.65s forwards;
         }
@@ -355,7 +358,7 @@
         }
 
         .hero-scroll-hint span {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             font-weight: 500;
             letter-spacing: 0.1em;
@@ -383,21 +386,21 @@
            SECTION HEADERS
            ═══════════════════════════════════════ */
         .section-header {
-            margin-bottom: 3.5rem;
+            margin-bottom: 4rem;
         }
 
         .section-label {
             font-family: var(--font-mono);
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: var(--accent);
             font-weight: 500;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
         }
 
         .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
             font-weight: 800;
             letter-spacing: -0.02em;
             line-height: 1.15;
@@ -436,7 +439,7 @@
 
         .interest-card {
             background: var(--bg-card);
-            padding: 2rem 1.8rem;
+            padding: 2.25rem 2rem;
             transition: all 0.35s var(--ease-out);
             position: relative;
         }
@@ -459,23 +462,23 @@
         }
 
         .interest-icon {
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 1.1rem;
             display: block;
         }
 
         .interest-card h4 {
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.7rem;
             position: relative;
         }
 
         .interest-card p {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.65;
             position: relative;
         }
 
@@ -483,14 +486,14 @@
            SWITZERLAND SECTION
            ═══════════════════════════════════════ */
         .story-block {
-            max-width: 680px;
+            max-width: 740px;
         }
 
         .story-block p {
-            font-size: 1.1rem;
-            line-height: 1.8;
+            font-size: 1.15rem;
+            line-height: 1.85;
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.75rem;
         }
 
         .story-block strong {
@@ -528,13 +531,13 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.55rem 1.1rem;
+            padding: 0.6rem 1.25rem;
             background: rgba(10,102,194,0.1);
             border: 1px solid rgba(10,102,194,0.25);
             border-radius: 8px;
             color: #4a9ede;
             text-decoration: none;
-            font-size: 0.88rem;
+            font-size: 0.95rem;
             font-weight: 600;
             transition: all 0.3s var(--ease-out);
         }
@@ -547,8 +550,8 @@
 
         .timeline {
             position: relative;
-            padding-left: 2.5rem;
-            margin-top: 2.5rem;
+            padding-left: 2.75rem;
+            margin-top: 3rem;
         }
 
         .timeline::before {
@@ -563,13 +566,13 @@
 
         .timeline-entry {
             position: relative;
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
         }
 
         .timeline-entry::before {
             content: '';
             position: absolute;
-            left: -2.5rem;
+            left: -2.75rem;
             top: 6px;
             width: 15px;
             height: 15px;
@@ -586,30 +589,30 @@
 
         .timeline-date {
             font-family: var(--font-mono);
-            font-size: 0.8rem;
+            font-size: 0.88rem;
             color: var(--accent);
             font-weight: 500;
             letter-spacing: 0.04em;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.35rem;
         }
 
         .timeline-role {
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.25rem;
         }
 
         .timeline-place {
-            font-size: 0.92rem;
+            font-size: 1rem;
             color: var(--text-muted);
-            margin-bottom: 0.7rem;
+            margin-bottom: 0.8rem;
         }
 
         .timeline-desc {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--text-secondary);
-            line-height: 1.7;
+            line-height: 1.75;
         }
 
         /* ═══════════════════════════════════════
@@ -625,7 +628,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 14px;
-            padding: 2rem;
+            padding: 2.25rem;
             transition: all 0.35s var(--ease-out);
         }
 
@@ -636,22 +639,22 @@
         }
 
         .cert-card h4 {
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.7rem;
         }
 
         .cert-card .cert-provider {
-            font-size: 0.88rem;
+            font-size: 0.95rem;
             color: var(--accent);
-            margin-bottom: 1rem;
+            margin-bottom: 1.1rem;
         }
 
         .cert-card .cert-content {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
-            line-height: 1.7;
+            line-height: 1.75;
         }
 
         /* ═══════════════════════════════════════
@@ -661,8 +664,8 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 2.5rem;
-            margin-bottom: 1.5rem;
+            padding: 3rem;
+            margin-bottom: 1.75rem;
             transition: all 0.35s var(--ease-out);
         }
 
@@ -671,19 +674,19 @@
         }
 
         .project-title {
-            font-size: 1.5rem;
+            font-size: 1.65rem;
             font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.75rem;
             letter-spacing: -0.01em;
         }
 
         .project p {
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: var(--text-secondary);
-            line-height: 1.75;
-            margin-bottom: 1.25rem;
-            max-width: 720px;
+            line-height: 1.8;
+            margin-bottom: 1.4rem;
+            max-width: 780px;
         }
 
         .project strong {
@@ -697,28 +700,28 @@
         }
 
         .project h3 {
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--text-primary);
-            margin: 2rem 0 1rem;
+            margin: 2.25rem 0 1.1rem;
         }
 
         .result-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 0.75rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 0.85rem;
+            margin-top: 1.75rem;
         }
 
         .result-item {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 1.2rem;
+            gap: 0.85rem;
+            padding: 1.1rem 1.35rem;
             background: rgba(40,225,218,0.04);
             border: 1px solid rgba(40,225,218,0.08);
             border-radius: 10px;
-            font-size: 0.92rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
             transition: all 0.25s var(--ease-out);
         }
@@ -747,7 +750,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 14px;
-            padding: 2rem;
+            padding: 2.25rem;
             transition: all 0.35s var(--ease-out);
         }
 
@@ -757,12 +760,12 @@
         }
 
         .contact-card h3 {
-            font-size: 0.85rem;
+            font-size: 0.92rem;
             font-weight: 600;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.9rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -770,13 +773,13 @@
 
         .contact-card h3 i {
             color: var(--accent);
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         .contact-card a {
             color: var(--text-primary);
             text-decoration: none;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: 500;
             transition: color 0.25s;
         }
@@ -786,7 +789,7 @@
         }
 
         .contact-card .private-number {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             color: var(--text-primary);
             font-weight: 500;
         }
@@ -798,10 +801,10 @@
         }
 
         .contact-card .contact-note {
-            margin-top: 0.6rem;
-            font-size: 0.85rem;
+            margin-top: 0.7rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
         /* ═══════════════════════════════════════
@@ -809,9 +812,9 @@
            ═══════════════════════════════════════ */
         footer {
             text-align: center;
-            padding: 4rem 2rem 2.5rem;
+            padding: 4.5rem 2rem 3rem;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.92rem;
             border-top: 1px solid var(--border);
             margin-top: 6rem;
         }
@@ -848,12 +851,20 @@
         }
 
         @media (max-width: 700px) {
+            html {
+                font-size: 16px;
+            }
+
             .page {
                 padding: 0 1.25rem;
             }
 
             .nav-bar {
                 padding: 0 1.25rem;
+            }
+
+            .nav-inner {
+                height: 68px;
             }
 
             .nav-toggle {
@@ -867,7 +878,7 @@
 
             .nav-center {
                 position: fixed;
-                top: 72px;
+                top: 68px;
                 left: 0;
                 right: 0;
                 background: rgba(6,9,15,0.95);
@@ -919,7 +930,7 @@
             }
 
             .project {
-                padding: 1.8rem 1.5rem;
+                padding: 2rem 1.5rem;
             }
 
             .result-grid {
